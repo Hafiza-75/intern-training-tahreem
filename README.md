@@ -72,6 +72,47 @@ The Day 2 **Profile / User-Information Page** was styled using CSS and converted
 * HTML5
 * CSS3
 
+# # Day 4 – JavaScript Interactive Profile Page
+
+## Overview
+
+This project is part of my internship training and focuses on adding interactive functionality to the Profile / User-Information Page created during the previous training days.
+
+## Topics Covered
+
+* JavaScript Variables
+* Data Types
+* Functions
+* Conditional Statements
+* Loops
+* Arrays
+* Objects
+* Array Methods
+* DOM Manipulation
+* DOM Events
+* Form Handling
+
+## Features Implemented
+
+* Created variables using `const` and `let`.
+* Worked with different data types, including strings, numbers, and booleans.
+* Created objects to store developer profile information.
+* Used arrays and an array of objects to manage skills and training goals.
+* Used array methods such as `map()`, `forEach()`, and `push()`.
+* Created dynamic functions to organize JavaScript functionality.
+* Added a time-based dynamic welcome message.
+* Dynamically rendered training goals using JavaScript.
+* Added functionality to add new technical skills dynamically.
+* Implemented form validation and submission handling.
+* Used event listeners for click, submit, mouseenter, and mouseleave events.
+* Applied basic DOM manipulation to dynamically create and update page elements.
+* Added an interactive hover effect to table rows.
+
+## Technologies Used
+
+* HTML5
+* CSS3
+* JavaScript
 
 
 

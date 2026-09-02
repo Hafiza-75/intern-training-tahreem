@@ -72,7 +72,7 @@ The Day 2 **Profile / User-Information Page** was styled using CSS and converted
 * HTML5
 * CSS3
 
-# # Day 4 – JavaScript Interactive Profile Page
+# Day 4 – JavaScript Interactive Profile Page
 
 ## Overview
 

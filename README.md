@@ -4,53 +4,47 @@
 
 ## About
 
-This repository is created for my internship training.
-I will use this repository throughout the training to store
-my tasks, practice work, and mini projects.
+This repository contains my tasks, practice work, and mini projects completed during my internship training.
 
-## Day 1
+---
 
-- Development environment setup
-- VS Code setup
-- Node.js and npm verification
-- Git and GitHub setup
-- First project/file
-- First Git commit
+## Day 1 – Development Environment Setup
+
+### Topics Covered
+
+* Development environment setup
+* VS Code setup
+* Node.js and npm verification
+* Git and GitHub setup
+* Basic Git workflow
+* First Git commit
+
+---
 
 ## Day 2 – HTML Profile Page
 
-## Overview
-
-This project was created as part of the internship training to practice the fundamentals of HTML.
-
-## Topics Covered
+### Topics Covered
 
 * HTML document structure
 * Semantic HTML
 * Headings and paragraphs
-* Links
-* Images
+* Links and images
 * Ordered and unordered lists
 * Tables
 * Forms
-* Input fields
-* Buttons
+* Input fields and buttons
 
-## Project
+### Project
 
-A basic **Profile / User-Information Page** was created using HTML. The page includes personal information, skills, links, an image, a user-information table, and a contact form.
+Created a basic Profile / User-Information Page using HTML.
 
-## Technologies Used
+**Technologies:** HTML5
 
-* HTML5
+---
 
 ## Day 3 – Responsive CSS Design
 
-## Overview
-
-This project is a continuation of the Day 2 HTML profile page. CSS was added to convert the basic HTML page into a structured and responsive design.
-
-## Topics Covered
+### Topics Covered
 
 * CSS Selectors
 * CSS Box Model
@@ -63,56 +57,33 @@ This project is a continuation of the Day 2 HTML profile page. CSS was added to 
 * Responsive Design
 * Media Queries
 
-## Project
+### Project
 
-The Day 2 **Profile / User-Information Page** was styled using CSS and converted into a responsive design that adapts to different screen sizes, including desktop and mobile devices.
+Styled the HTML Profile Page using CSS and converted it into a responsive design.
 
-## Technologies Used
+**Technologies:** HTML5, CSS3
 
-* HTML5
-* CSS3
+---
 
-# # Day 4 – JavaScript Interactive Profile Page
+## Day 4 – JavaScript Interactive Profile Page
 
-## Overview
+### Topics Covered
 
-This project is part of my internship training and focuses on adding interactive functionality to the Profile / User-Information Page created during the previous training days.
-
-## Topics Covered
-
-* JavaScript Variables
-* Data Types
-* Functions
-* Conditional Statements
+* Variables and Data Types
+* Functions and Conditional Statements
 * Loops
-* Arrays
-* Objects
+* Arrays and Objects
 * Array Methods
 * DOM Manipulation
 * DOM Events
 * Form Handling
 
-## Features Implemented
+### Features Implemented
 
-* Created variables using `const` and `let`.
-* Worked with different data types, including strings, numbers, and booleans.
-* Created objects to store developer profile information.
-* Used arrays and an array of objects to manage skills and training goals.
-* Used array methods such as `map()`, `forEach()`, and `push()`.
-* Created dynamic functions to organize JavaScript functionality.
-* Added a time-based dynamic welcome message.
-* Dynamically rendered training goals using JavaScript.
-* Added functionality to add new technical skills dynamically.
-* Implemented form validation and submission handling.
-* Used event listeners for click, submit, mouseenter, and mouseleave events.
-* Applied basic DOM manipulation to dynamically create and update page elements.
-* Added an interactive hover effect to table rows.
+* Dynamic welcome message based on the time of day
+* Dynamically rendered training goals
+* Add new skills functionality
+* Contact form validation
+* Interactive table hover effects
 
-## Technologies Used
-
-* HTML5
-* CSS3
-* JavaScript
-
-
-
+**Technologies:** HTML5, CSS3, JavaScript

@@ -63,7 +63,7 @@ Styled the HTML Profile Page using CSS and converted it into a responsive design
 
 **Technologies:** HTML5, CSS3
 
----
+# Day 4 – JavaScript Interactive Profile Page
 
 ## Day 4 – JavaScript Interactive Profile Page
 

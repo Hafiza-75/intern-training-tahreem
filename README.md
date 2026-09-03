@@ -87,3 +87,38 @@ Styled the HTML Profile Page using CSS and converted it into a responsive design
 * Interactive table hover effects
 
 **Technologies:** HTML5, CSS3, JavaScript
+
+---
+
+## Day 5 – Git & GitHub Workflow
+
+### Topics Covered
+
+- Git branches
+- Creating and switching branches
+- Staging and committing changes
+- Push and pull workflow
+- GitHub Pull Requests
+- Merge conflict resolution
+- README documentation
+- AI-assisted development and code verification
+
+### Git Workflow Practiced
+
+- Created a feature/practice branch
+- Made changes to the existing project
+- Staged and committed changes
+- Pushed the branch to GitHub
+- Created a Pull Request
+- Resolved a merge conflict in `README.md`
+- Merged the changes into the `main` branch
+
+### Project
+
+Continued working on the existing Profile / User-Information Page and practiced the complete Git and GitHub workflow.
+
+**Technologies:** HTML5, CSS3, JavaScript, Git, GitHub
+
+
+
+

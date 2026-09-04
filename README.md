@@ -8,7 +8,7 @@ This repository contains my tasks, practice work, and mini projects completed du
 
 ---
 
-## Week 1 – Web Development Fundamentals
+## Week 1 –  Development Environment & Fundamentals
 
 This week focused on web development fundamentals, JavaScript, development tools, and GitHub workflow.
 
@@ -41,3 +41,31 @@ This week focused on web development fundamentals, JavaScript, development tools
 ### Technologies Used
 
 `HTML5` `CSS3` `JavaScript` `Git` `GitHub`
+
+
+## WEEK 2 — Modern Frontend Development
+
+Learn the company's frontend framework and build reusable UI.
+
+---
+
+## Day 6 – React Introduction
+
+### Topics Covered
+
+- React project setup using Vite
+- React project structure
+- Components
+- JSX
+- Rendering
+- Props
+- Basic State
+- Event Handling
+
+### Project
+
+Started a Task Management Dashboard using React. Created reusable components and implemented props, basic state, and event handling.
+
+**Technologies:** React, JavaScript, CSS3, Vite
+
+

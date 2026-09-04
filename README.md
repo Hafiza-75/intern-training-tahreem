@@ -8,117 +8,36 @@ This repository contains my tasks, practice work, and mini projects completed du
 
 ---
 
-## Day 1 – Development Environment Setup
+## Week 1 – Web Development Fundamentals
 
-### Topics Covered
+This week focused on web development fundamentals, JavaScript, development tools, and GitHub workflow.
 
-* Development environment setup
-* VS Code setup
-* Node.js and npm verification
-* Git and GitHub setup
-* Basic Git workflow
-* First Git commit
+### Day 1 – Development Environment Setup
+- VS Code, Node.js, npm, Git & GitHub setup
+- Basic Git commands and first commit
 
----
+### Day 2 – HTML Fundamentals
+- HTML structure and semantic elements
+- Links, images, lists, tables, and forms
+- **Project:** Basic Profile Page
 
-## Day 2 – HTML Profile Page
+### Day 3 – Responsive CSS Design
+- CSS selectors, Box Model, Flexbox, and Grid
+- Positioning, spacing, typography, and media queries
+- **Project:** Responsive Profile Page
 
-### Topics Covered
+### Day 4 – JavaScript Fundamentals
+- Variables, functions, conditions, loops, arrays, and objects
+- DOM manipulation, events, and form handling
+- **Project:** Interactive Profile Page
 
-* HTML document structure
-* Semantic HTML
-* Headings and paragraphs
-* Links and images
-* Ordered and unordered lists
-* Tables
-* Forms
-* Input fields and buttons
-
-### Project
-
-Created a basic Profile / User-Information Page using HTML.
-
-**Technologies:** HTML5
+### Day 5 – Git & GitHub Workflow
+- Branching, commits, push/pull, and Pull Requests
+- Merge conflict resolution and README documentation
+- Practiced the complete GitHub workflow
 
 ---
 
-## Day 3 – Responsive CSS Design
+### Technologies Used
 
-### Topics Covered
-
-* CSS Selectors
-* CSS Box Model
-* Display Properties
-* Flexbox
-* CSS Grid
-* Positioning
-* Spacing
-* Typography
-* Responsive Design
-* Media Queries
-
-### Project
-
-Styled the HTML Profile Page using CSS and converted it into a responsive design.
-
-**Technologies:** HTML5, CSS3
-
-# Day 4 – JavaScript Interactive Profile Page
-
-## Day 4 – JavaScript Interactive Profile Page
-
-### Topics Covered
-
-* Variables and Data Types
-* Functions and Conditional Statements
-* Loops
-* Arrays and Objects
-* Array Methods
-* DOM Manipulation
-* DOM Events
-* Form Handling
-
-### Features Implemented
-
-* Dynamic welcome message based on the time of day
-* Dynamically rendered training goals
-* Add new skills functionality
-* Contact form validation
-* Interactive table hover effects
-
-**Technologies:** HTML5, CSS3, JavaScript
-
----
-
-## Day 5 – Git & GitHub Workflow
-
-### Topics Covered
-
-- Git branches
-- Creating and switching branches
-- Staging and committing changes
-- Push and pull workflow
-- GitHub Pull Requests
-- Merge conflict resolution
-- README documentation
-- AI-assisted development and code verification
-
-### Git Workflow Practiced
-
-- Created a feature/practice branch
-- Made changes to the existing project
-- Staged and committed changes
-- Pushed the branch to GitHub
-- Created a Pull Request
-- Resolved a merge conflict in `README.md`
-- Merged the changes into the `main` branch
-
-### Project
-
-Continued working on the existing Profile / User-Information Page and practiced the complete Git and GitHub workflow.
-
-**Technologies:** HTML5, CSS3, JavaScript, Git, GitHub
-
-
-
-
+`HTML5` `CSS3` `JavaScript` `Git` `GitHub`

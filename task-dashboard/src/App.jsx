@@ -1,35 +1,103 @@
 import { useState } from "react";
+
 import Header from "./components/Header";
 import Welcome from "./components/Welcome";
 import TaskCard from "./components/TaskCard";
+import TaskControls from "./components/TaskControls";
 
+function App() {
+  // STATE
+  const [tasks, setTasks] = useState([
+    {
+      id: 1,
+      title: "Learn React Components",
+      completed: false,
+    },
+    {
+      id: 2,
+      title: "Practice Props and State",
+      completed: false,
+    },
+    {
+      id: 3,
+      title: "Complete Day 7 Task",
+      completed: true,
+    },
+  ]);
 
-function App () {
+  // EVENT HANDLER — ADD TASK
+  const addTask = () => {
+    const newTask = {
+      id: Date.now(),
+      title: `New Task ${tasks.length + 1}`,
+      completed: false,
+    };
 
-  // Basic State
-  const [taskCount, setTaskCount] = useState(3);
-
-  const increaseTaskCount = () => {
-    setTaskCount (taskCount + 1);
+    setTasks([...tasks, newTask]);
   };
 
-  return ( 
-    <>
-    <Header/>
-    <main>
-      <Welcome name = "Tahreem "/>
-      <section>
-        <h2>My Tasks ({taskCount})</h2>
-        <TaskCard title = "Learn react components" status = "In progress" />
-        <TaskCard title = "Practise Props and State" status = "Pending" />
-        <TaskCard  title = "Day 6 Task" status = "Completed" />
-        <button onClick={increaseTaskCount}>Add Task</button>
-      </section>
-    </main>
-    
-    </>
+  // EVENT HANDLER — TOGGLE STATUS
+  const toggleTaskStatus = (taskId) => {
+    const updatedTasks = tasks.map((task) => {
+      if (task.id === taskId) {
+        return {
+          ...task,
+          completed: !task.completed,
+        };
+      }
 
-);
+      return task;
+    });
+
+    setTasks(updatedTasks);
+  };
+
+  // EVENT HANDLER — CLEAR COMPLETED TASKS
+  const clearCompletedTasks = () => {
+    const remainingTasks = tasks.filter(
+      (task) => !task.completed
+    );
+
+    setTasks(remainingTasks);
+  };
+
+  return (
+    <>
+      <Header totalTasks={tasks.length} />
+
+      <main>
+        <Welcome
+          name="Tahreem"
+          hasTasks={tasks.length > 0}
+        />
+
+        <TaskControls
+          onAddTask={addTask}
+          onClearCompleted={clearCompletedTasks}
+        />
+
+        <section>
+          <h2>My Tasks</h2>
+
+          {tasks.length > 0 ? (
+            <div className="task-list">
+              {tasks.map((task) => (
+                <TaskCard
+                  key={task.id}
+                  task={task}
+                  onToggleStatus={toggleTaskStatus}
+                />
+              ))}
+            </div>
+          ) : (
+            <p className="empty-message">
+              No tasks available. Add a new task!
+            </p>
+          )}
+        </section>
+      </main>
+    </>
+  );
 }
 
 export default App;

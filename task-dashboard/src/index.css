@@ -46,6 +46,33 @@ button:hover {
   background-color: #1d4ed8;
 }
 
+.task-controls {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.task-card {
+  padding: 16px;
+  margin-top: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.task-card h3 {
+  margin-top: 0;
+}
+
+.task-list {
+  display: grid;
+  gap: 15px;
+}
+
+.empty-message {
+  text-align: center;
+  padding: 20px;
+}
+
 @media (max-width: 600px) {
   main {
     padding: 10px;

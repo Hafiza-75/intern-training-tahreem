@@ -69,3 +69,31 @@ Started a Task Management Dashboard using React. Created reusable components and
 **Technologies:** React, JavaScript, CSS3, Vite
 
 
+
+
+
+---
+
+## Day 7 – Components & State
+
+### Topics Covered
+
+- React Components
+- Props
+- State with useState
+- Event Handling
+- Parent-to-Child Communication
+- Child-to-Parent Communication using Callback Functions
+- Conditional Rendering
+
+### Features Implemented
+
+- Created reusable TaskCard and TaskControls components.
+- Passed data and functions between parent and child components using props.
+- Managed tasks using React state.
+- Added functionality to add new tasks.
+- Added functionality to update task status.
+- Added functionality to remove completed tasks.
+- Implemented conditional rendering for task and empty states.
+
+**Technologies:** React, JavaScript, CSS3, Vite

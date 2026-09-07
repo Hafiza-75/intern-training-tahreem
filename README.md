@@ -97,3 +97,32 @@ Started a Task Management Dashboard using React. Created reusable components and
 - Implemented conditional rendering for task and empty states.
 
 **Technologies:** React, JavaScript, CSS3, Vite
+
+
+
+
+---
+
+## Day 8 – Forms
+
+### Topics Covered
+
+- Form State
+- Controlled Inputs
+- Form Validation
+- Error Messages
+- Submit Handling
+- Reset Handling
+- Add and Edit Forms
+
+### Features Implemented
+
+- Created a reusable TaskForm component.
+- Implemented controlled form inputs using React state.
+- Added validation for task title and description.
+- Displayed validation error messages.
+- Implemented add task functionality.
+- Implemented edit and update task functionality.
+- Added form reset and cancel handling.
+
+**Technologies:** React, JavaScript, CSS3, Vite

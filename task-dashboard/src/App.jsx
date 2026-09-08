@@ -14,24 +14,28 @@ function App() {
       id: 1,
       title: "Learn React Components",
       description: "Understand reusable React components.",
+      priority: "High",
       completed: false,
     },
     {
       id: 2,
       title: "Practice Props and State",
       description: "Practice passing props and managing state.",
+      priority: "Medium",
       completed: false,
     },
     {
       id: 3,
       title: "Complete Day 9 Task",
       description: "Implement lists, search, filters, and sorting.",
+      priority: "High",
       completed: true,
     },
     {
       id: 4,
       title: "Build Task Dashboard",
       description: "Create a responsive task management application.",
+      priority: "Low",
       completed: false,
     },
   ]);
@@ -43,6 +47,7 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [filterStatus, setFilterStatus] = useState("all");
   const [sortOrder, setSortOrder] = useState("default");
+  const [priorityFilter, setPriorityFilter] = useState("all");
 
   // LOADING STATE
   const [loading, setLoading] = useState(true);
@@ -130,7 +135,16 @@ function App() {
         (filterStatus === "completed" && task.completed) ||
         (filterStatus === "pending" && !task.completed);
 
-      return matchesSearch && matchesStatus;
+      // Priority filter
+      const matchesPriority =
+        priorityFilter === "all" ||
+        task.priority === priorityFilter;
+
+      return (
+        matchesSearch &&
+        matchesStatus &&
+        matchesPriority
+      );
     })
     .sort((a, b) => {
       if (sortOrder === "az") {
@@ -173,6 +187,8 @@ function App() {
           onFilterChange={setFilterStatus}
           sortOrder={sortOrder}
           onSortChange={setSortOrder}
+          priorityFilter={priorityFilter}
+          onPriorityChange={setPriorityFilter}
         />
 
         <section>

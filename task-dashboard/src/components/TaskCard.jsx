@@ -12,6 +12,11 @@ function TaskCard({ task, onToggleStatus, onEditTask }) {
         </strong>
       </p>
 
+      <p>
+        Priority: <strong> {task.priority || "Medium"} </strong>
+      </p>
+
+
       <div className="task-buttons">
         <button onClick={() => onToggleStatus(task.id)}>
           {task.completed

@@ -154,3 +154,37 @@ Started a Task Management Dashboard using React. Created reusable components and
 - Added a simulated loading state.
 
 **Technologies:** React, JavaScript, CSS3, Vite
+
+---
+
+# Day 10 – Frontend Mini Project
+
+## Task Management Dashboard
+
+The final project for Week 2 combines all the concepts learned during the Modern Frontend Development training.
+
+### Features
+
+- Reusable React components
+- Props and parent-child communication
+- State management using `useState`
+- Event handling
+- Add and edit task functionality
+- Form validation and error messages
+- Form reset and cancel handling
+- Dynamic task listing
+- Search functionality
+- Task status filtering
+- Priority filtering
+- Task sorting
+- Loading state
+- Empty state
+- Responsive user interface
+
+### Technologies Used
+
+- React
+- JavaScript
+- CSS3
+- Vite
+

@@ -118,6 +118,37 @@ button:hover {
   flex-wrap: wrap;
 }
 
+.task-filters {
+  margin-bottom: 20px;
+}
+
+.filter-controls {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.filter-controls input,
+.filter-controls select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.filter-controls input {
+  flex: 1;
+  min-width: 200px;
+}
+
+.loading-message,
+.empty-message {
+  text-align: center;
+  padding: 30px;
+  font-size: 1.1rem;
+}
+
 @media (max-width: 600px) {
   main {
     padding: 10px;

@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Header from "./components/Header";
 import Welcome from "./components/Welcome";
 import TaskCard from "./components/TaskCard";
 import TaskControls from "./components/TaskControls";
 import TaskForm from "./components/TaskForm";
+import TaskFilters from "./components/TaskFilters";
 
 function App() {
+  // TASK STATE
   const [tasks, setTasks] = useState([
     {
       id: 1,
@@ -22,14 +24,39 @@ function App() {
     },
     {
       id: 3,
-      title: "Complete Day 8 Task",
-      description: "Build an add and edit task form.",
+      title: "Complete Day 9 Task",
+      description: "Implement lists, search, filters, and sorting.",
       completed: true,
+    },
+    {
+      id: 4,
+      title: "Build Task Dashboard",
+      description: "Create a responsive task management application.",
+      completed: false,
     },
   ]);
 
+  // FORM STATE
   const [editingTask, setEditingTask] = useState(null);
 
+  // FILTER STATES
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filterStatus, setFilterStatus] = useState("all");
+  const [sortOrder, setSortOrder] = useState("default");
+
+  // LOADING STATE
+  const [loading, setLoading] = useState(true);
+
+  // Simulating data loading
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  // ADD TASK
   const addTask = (taskData) => {
     const newTask = {
       id: Date.now(),
@@ -40,10 +67,12 @@ function App() {
     setTasks([...tasks, newTask]);
   };
 
+  // START EDITING
   const editTask = (task) => {
     setEditingTask(task);
   };
 
+  // UPDATE TASK
   const updateTask = (updatedTask) => {
     const updatedTasks = tasks.map((task) =>
       task.id === updatedTask.id ? updatedTask : task
@@ -53,10 +82,12 @@ function App() {
     setEditingTask(null);
   };
 
+  // CANCEL EDIT
   const cancelEdit = () => {
     setEditingTask(null);
   };
 
+  // TOGGLE TASK STATUS
   const toggleTaskStatus = (taskId) => {
     const updatedTasks = tasks.map((task) => {
       if (task.id === taskId) {
@@ -72,6 +103,7 @@ function App() {
     setTasks(updatedTasks);
   };
 
+  // CLEAR COMPLETED TASKS
   const clearCompletedTasks = () => {
     const remainingTasks = tasks.filter(
       (task) => !task.completed
@@ -79,6 +111,38 @@ function App() {
 
     setTasks(remainingTasks);
   };
+
+  // FILTER + SEARCH + SORT
+  const displayedTasks = tasks
+    .filter((task) => {
+      // Search
+      const matchesSearch =
+        task.title
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase()) ||
+        task.description
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase());
+
+      // Status filter
+      const matchesStatus =
+        filterStatus === "all" ||
+        (filterStatus === "completed" && task.completed) ||
+        (filterStatus === "pending" && !task.completed);
+
+      return matchesSearch && matchesStatus;
+    })
+    .sort((a, b) => {
+      if (sortOrder === "az") {
+        return a.title.localeCompare(b.title);
+      }
+
+      if (sortOrder === "za") {
+        return b.title.localeCompare(a.title);
+      }
+
+      return 0;
+    });
 
   return (
     <>
@@ -102,12 +166,27 @@ function App() {
           onClearCompleted={clearCompletedTasks}
         />
 
+        <TaskFilters
+          searchTerm={searchTerm}
+          onSearchChange={setSearchTerm}
+          filterStatus={filterStatus}
+          onFilterChange={setFilterStatus}
+          sortOrder={sortOrder}
+          onSortChange={setSortOrder}
+        />
+
         <section>
           <h2>My Tasks</h2>
 
-          {tasks.length > 0 ? (
+          {/* Loading State */}
+          {loading ? (
+            <p className="loading-message">
+              Loading tasks...
+            </p>
+          ) : displayedTasks.length > 0 ? (
+            /* Dynamic List */
             <div className="task-list">
-              {tasks.map((task) => (
+              {displayedTasks.map((task) => (
                 <TaskCard
                   key={task.id}
                   task={task}
@@ -117,8 +196,9 @@ function App() {
               ))}
             </div>
           ) : (
+            /* Empty State */
             <p className="empty-message">
-              No tasks available. Add a new task!
+              No tasks found.
             </p>
           )}
         </section>

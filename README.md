@@ -126,3 +126,31 @@ Started a Task Management Dashboard using React. Created reusable components and
 - Added form reset and cancel handling.
 
 **Technologies:** React, JavaScript, CSS3, Vite
+
+
+
+---
+
+## Day 9 – Lists & Filters
+
+### Topics Covered
+
+- Dynamic Lists
+- React Keys
+- Search Functionality
+- Task Filtering
+- Task Sorting
+- Empty States
+- Loading States
+
+### Features Implemented
+
+- Dynamically rendered tasks using the `map()` method.
+- Used unique keys for each task.
+- Added task search functionality.
+- Implemented filtering by task status.
+- Added alphabetical sorting options.
+- Implemented an empty state when no tasks match the search or filter.
+- Added a simulated loading state.
+
+**Technologies:** React, JavaScript, CSS3, Vite

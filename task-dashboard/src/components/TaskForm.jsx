@@ -9,6 +9,10 @@ function TaskForm({ onAddTask, onEditTask, editingTask, onCancelEdit }) {
     editingTask ? editingTask.description : ""
   );
 
+  const [priority, setPriority] = useState(
+    editingTask ? editingTask.priority || "Medium" : "Medium"
+  );
+
   const [errors, setErrors] = useState({});
 
   const validateForm = () => {
@@ -40,6 +44,7 @@ function TaskForm({ onAddTask, onEditTask, editingTask, onCancelEdit }) {
     const taskData = {
       title: title.trim(),
       description: description.trim(),
+      priority,
     };
 
     if (editingTask) {
@@ -57,6 +62,7 @@ function TaskForm({ onAddTask, onEditTask, editingTask, onCancelEdit }) {
   const handleReset = () => {
     setTitle("");
     setDescription("");
+    setPriority("Medium");
     setErrors({});
   };
 
@@ -104,6 +110,21 @@ function TaskForm({ onAddTask, onEditTask, editingTask, onCancelEdit }) {
               {errors.description}
             </p>
           )}
+        </div>
+
+        {/* Priority Selector */}
+        <div className="form-group">
+          <label htmlFor="task-priority">Priority</label>
+
+          <select
+            id="task-priority"
+            value={priority}
+            onChange={(event) => setPriority(event.target.value)}
+          >
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+          </select>
         </div>
 
         <div className="form-buttons">

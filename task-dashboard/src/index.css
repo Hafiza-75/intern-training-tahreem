@@ -158,3 +158,44 @@ button:hover {
     padding: 20px 10px;
   }
 }
+
+@media (max-width: 768px) {
+  main {
+    padding: 15px;
+  }
+
+  .filter-controls {
+    flex-direction: column;
+  }
+
+  .filter-controls input,
+  .filter-controls select {
+    width: 100%;
+  }
+
+  .form-buttons,
+  .task-buttons,
+  .task-controls {
+    flex-direction: column;
+  }
+
+  .form-buttons button,
+  .task-buttons button,
+  .task-controls button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.6rem;
+  }
+
+  section {
+    padding: 15px;
+  }
+
+  .task-card {
+    padding: 15px;
+  }
+}

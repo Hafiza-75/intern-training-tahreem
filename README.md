@@ -42,149 +42,66 @@ This week focused on web development fundamentals, JavaScript, development tools
 
 `HTML5` `CSS3` `JavaScript` `Git` `GitHub`
 
+## Week 2 – Modern Frontend Development
 
-## WEEK 2 — Modern Frontend Development
+This week focused on learning React and building a reusable, interactive Task Management Dashboard.
 
-Learn the company's frontend framework and build reusable UI.
+### Day 6 – React Introduction
+- React setup using Vite
+- Components, JSX, props, state, and event handling
+- **Project:** Started Task Management Dashboard
 
----
+### Day 7 – Components & State
+- Reusable components and props
+- State management with `useState`
+- Parent-child communication
+- Conditional rendering
+- Added, updated, and removed tasks
 
-## Day 6 – React Introduction
-
-### Topics Covered
-
-- React project setup using Vite
-- React project structure
-- Components
-- JSX
-- Rendering
-- Props
-- Basic State
-- Event Handling
-
-### Project
-
-Started a Task Management Dashboard using React. Created reusable components and implemented props, basic state, and event handling.
-
-**Technologies:** React, JavaScript, CSS3, Vite
-
-
-
-
-
----
-
-## Day 7 – Components & State
-
-### Topics Covered
-
-- React Components
-- Props
-- State with useState
-- Event Handling
-- Parent-to-Child Communication
-- Child-to-Parent Communication using Callback Functions
-- Conditional Rendering
-
-### Features Implemented
-
-- Created reusable TaskCard and TaskControls components.
-- Passed data and functions between parent and child components using props.
-- Managed tasks using React state.
-- Added functionality to add new tasks.
-- Added functionality to update task status.
-- Added functionality to remove completed tasks.
-- Implemented conditional rendering for task and empty states.
-
-**Technologies:** React, JavaScript, CSS3, Vite
-
-
-
-
----
-
-## Day 8 – Forms
-
-### Topics Covered
-
-- Form State
-- Controlled Inputs
-- Form Validation
-- Error Messages
-- Submit Handling
-- Reset Handling
-- Add and Edit Forms
-
-### Features Implemented
-
-- Created a reusable TaskForm component.
-- Implemented controlled form inputs using React state.
-- Added validation for task title and description.
-- Displayed validation error messages.
-- Implemented add task functionality.
-- Implemented edit and update task functionality.
-- Added form reset and cancel handling.
-
-**Technologies:** React, JavaScript, CSS3, Vite
-
-
-
----
-
-## Day 9 – Lists & Filters
-
-### Topics Covered
-
-- Dynamic Lists
-- React Keys
-- Search Functionality
-- Task Filtering
-- Task Sorting
-- Empty States
-- Loading States
-
-### Features Implemented
-
-- Dynamically rendered tasks using the `map()` method.
-- Used unique keys for each task.
-- Added task search functionality.
-- Implemented filtering by task status.
-- Added alphabetical sorting options.
-- Implemented an empty state when no tasks match the search or filter.
-- Added a simulated loading state.
-
-**Technologies:** React, JavaScript, CSS3, Vite
-
----
-
-# Day 10 – Frontend Mini Project
-
-## Task Management Dashboard
-
-The final project for Week 2 combines all the concepts learned during the Modern Frontend Development training.
-
-### Features
-
-- Reusable React components
-- Props and parent-child communication
-- State management using `useState`
-- Event handling
+### Day 8 – Forms & Validation
+- Controlled inputs and form state
+- Form validation and error handling
 - Add and edit task functionality
-- Form validation and error messages
 - Form reset and cancel handling
-- Dynamic task listing
-- Search functionality
-- Task status filtering
-- Priority filtering
-- Task sorting
-- Loading state
-- Empty state
-- Responsive user interface
+
+### Day 9 – Lists & Filters
+- Dynamic lists and React keys
+- Search and status filtering
+- Priority filtering and sorting
+- Loading and empty states
+
+### Day 10 – Task Management Dashboard
+- Combined React components, state, forms, validation, search, and filters
+- Built a responsive Task Management Dashboard
+- Implemented complete task management functionality
 
 ### Technologies Used
 
-- React
-- JavaScript
-- CSS3
-- Vite
+`React` `JavaScript` `CSS3` `Vite`
 
+## Week 3 –  APIs & Frontend Integration
+
+
+## Day 11 – HTTP & REST APIs
+
+### Topics Covered
+
+- HTTP Request and Response Cycle
+- REST APIs
+- JSON Data
+- GET, POST, PUT, PATCH, and DELETE Methods
+- HTTP Status Codes
+- API Integration using Fetch
+- Loading and Error States
+
+### Practical Work
+
+- Created an API component to fetch task data.
+- Used the `fetch()` API to send a GET request.
+- Converted the API response from JSON.
+- Stored API data using React state.
+- Implemented loading and error states.
+- Displayed API data dynamically in the React application.
+- Observed the API request and response using Browser DevTools.
+
+**Technologies:** React, JavaScript, REST API, Fetch API

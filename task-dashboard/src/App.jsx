@@ -6,6 +6,7 @@ import TaskCard from "./components/TaskCard";
 import TaskControls from "./components/TaskControls";
 import TaskForm from "./components/TaskForm";
 import TaskFilters from "./components/TaskFilters";
+import ApiTasks from "./components/ApiTasks";
 
 function App() {
   // TASK STATE
@@ -176,7 +177,6 @@ function App() {
         />
 
         <TaskControls
-          onAddTask={() => setEditingTask(null)}
           onClearCompleted={clearCompletedTasks}
         />
 
@@ -218,6 +218,10 @@ function App() {
             </p>
           )}
         </section>
+        
+        
+        <ApiTasks />
+
       </main>
     </>
   );

@@ -1,56 +1,94 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { getTasks, createTask } from "../services/taskService";
 
 function ApiTasks() {
-    const [tasks, setTasks] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState("");
+  const [tasks, setTasks] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [creating, setCreating] = useState(false);
+  const [error, setError] = useState("");
 
-      useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/todos?_limit=5")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to fetch tasks");
-        }
+  // GET REQUEST
+  useEffect(() => {
+    async function loadTasks() {
+      try {
+        setLoading(true);
 
-        return response.json();
-      })
-      .then((data) => {
+        const data = await getTasks(5);
+
         setTasks(data);
-        setLoading(false);
-      })
-      .catch((error) => {
+      } catch (error) {
         setError(error.message);
+      } finally {
         setLoading(false);
-      });
+      }
+    }
+
+    loadTasks();
   }, []);
 
+  // POST REQUEST
+  const handleCreateTask = async () => {
+    try {
+      setCreating(true);
+      setError("");
 
-    if (loading) {
-        return <p> Loading tasks from API ...</p>;
+      const newTaskData = {
+        title: "Practice API Integration",
+        completed: false,
+        userId: 1,
+      };
+
+      const createdTask = await createTask(newTaskData);
+
+      setTasks((currentTasks) => [
+        createdTask,
+        ...currentTasks,
+      ]);
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setCreating(false);
     }
+  };
 
-    if (error) {
-        return <p> Error: {error} </p>;
-    }
- 
-    return (
-        <section>
-            <h2>
-                Tasks from Api
-            </h2>
-            {tasks.map((task) => (
-                <div key = {task.id} className="task-card">
-                    <h3> {task.title} </h3>
-                    <p>
-                        Status: {task.completed ? "Completed" : "Pending" }
-                    </p>
-                </div>
-            )
-            )
-            }
-        </section>
-    );
+  if (loading) {
+    return <p>Loading tasks from API...</p>;
+  }
 
+  return (
+    <section>
+      <h2>API Integrated Tasks</h2>
+
+      {error && (
+        <p className="error-message">
+          Error: {error}
+        </p>
+      )}
+
+      <button
+        type="button"
+        onClick={handleCreateTask}
+        disabled={creating}
+      >
+        {creating ? "Creating Task..." : "Create API Task"}
+      </button>
+
+      <div className="task-list">
+        {tasks.map((task) => (
+          <div key={task.id} className="task-card">
+            <h3>{task.title}</h3>
+
+            <p>
+              Status:{" "}
+              {task.completed
+                ? "Completed"
+                : "Pending"}
+            </p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
 }
 
 export default ApiTasks;

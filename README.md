@@ -105,3 +105,32 @@ This week focused on learning React and building a reusable, interactive Task Ma
 - Observed the API request and response using Browser DevTools.
 
 **Technologies:** React, JavaScript, REST API, Fetch API
+
+---
+
+## Day 12 – API Integration
+
+### Topics Covered
+
+- Fetch API
+- API Services
+- GET Requests
+- POST Requests
+- Request Parameters
+- Request Body
+- JSON Data
+- Response Handling
+- Loading and Error States
+
+### Practical Work
+
+- Created a reusable API service for handling API requests.
+- Separated API logic from React components.
+- Used query parameters to control the number of tasks fetched.
+- Implemented a GET request to retrieve tasks.
+- Implemented a POST request to create a new task.
+- Sent task data through the request body.
+- Handled successful and failed API responses.
+- Added loading, creating, and error states.
+
+**Technologies Used:** React, JavaScript, Fetch API, REST API

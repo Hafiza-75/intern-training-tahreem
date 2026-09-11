@@ -134,3 +134,29 @@ This week focused on learning React and building a reusable, interactive Task Ma
 - Added loading, creating, and error states.
 
 **Technologies Used:** React, JavaScript, Fetch API, REST API
+
+
+
+---
+
+## Day 13 – API States
+
+### Topics Covered
+
+- Loading State
+- Success State
+- Empty State
+- Error State
+- Retry Handling
+- API Response Handling
+
+### Features Implemented
+
+- Added a loading state while API data is being fetched.
+- Implemented successful API data rendering.
+- Added an empty state when no API tasks are available.
+- Implemented error handling for failed API requests.
+- Added a Retry button to reattempt failed API requests.
+- Added loading feedback while creating API tasks.
+
+**Technologies:** React, JavaScript, Fetch API, REST API

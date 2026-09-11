@@ -3,67 +3,100 @@ import { getTasks, createTask } from "../services/taskService";
 
 function ApiTasks() {
   const [tasks, setTasks] = useState([]);
+
+  // API states
   const [loading, setLoading] = useState(true);
-  const [creating, setCreating] = useState(false);
   const [error, setError] = useState("");
 
-  // GET REQUEST
+  // POST state
+  const [creating, setCreating] = useState(false);
+
+  // Fetch tasks on initial mount only
   useEffect(() => {
+    let isMounted = true;
+
     async function loadTasks() {
       try {
         setLoading(true);
+        setError("");
 
         const data = await getTasks(5);
 
-        setTasks(data);
-      } catch (error) {
-        setError(error.message);
+        if (isMounted) {
+          setTasks(data);
+        }
+      } catch (err) {
+        if (isMounted) {
+          setError(err.message);
+        }
       } finally {
-        setLoading(false);
+        if (isMounted) {
+          setLoading(false);
+        }
       }
     }
 
     loadTasks();
-  }, []);
 
-  // POST REQUEST
+    return () => {
+      isMounted = false;
+    };
+  }, []); // Empty dependency array ensures this runs strictly ONCE on mount
+
   const handleCreateTask = async () => {
     try {
       setCreating(true);
       setError("");
 
-      const newTaskData = {
-        title: "Practice API Integration",
+      const newTask = {
+        title: "Practice API States",
         completed: false,
         userId: 1,
       };
 
-      const createdTask = await createTask(newTaskData);
+      const createdTask = await createTask(newTask);
 
       setTasks((currentTasks) => [
         createdTask,
         ...currentTasks,
       ]);
-    } catch (error) {
-      setError(error.message);
+    } catch (err) {
+      setError(err.message);
     } finally {
       setCreating(false);
     }
   };
 
+  // 1. LOADING STATE
   if (loading) {
-    return <p>Loading tasks from API...</p>;
+    return (
+      <section>
+        <h2>API Tasks</h2>
+        <p className="loading-message">Loading tasks...</p>
+      </section>
+    );
   }
 
+  // 2. ERROR STATE
+  if (error) {
+    return (
+      <section>
+        <h2>API Tasks</h2>
+        <p className="error-message">{error}</p>
+        <button 
+          type="button" 
+          onClick={() => window.location.reload()}
+        >
+          Retry
+        </button>
+      </section>
+    );
+  }
+
+  // 3. SUCCESS / EMPTY STATE
   return (
     <section>
-      <h2>API Integrated Tasks</h2>
-
-      {error && (
-        <p className="error-message">
-          Error: {error}
-        </p>
-      )}
+      <h2>API Tasks</h2>
 
       <button
         type="button"
@@ -73,20 +106,20 @@ function ApiTasks() {
         {creating ? "Creating Task..." : "Create API Task"}
       </button>
 
-      <div className="task-list">
-        {tasks.map((task) => (
-          <div key={task.id} className="task-card">
-            <h3>{task.title}</h3>
-
-            <p>
-              Status:{" "}
-              {task.completed
-                ? "Completed"
-                : "Pending"}
-            </p>
-          </div>
-        ))}
-      </div>
+      {tasks.length === 0 ? (
+        <p className="empty-message">No tasks available.</p>
+      ) : (
+        <div className="task-list">
+          {tasks.map((task) => (
+            <div key={task.id} className="task-card">
+              <h3>{task.title}</h3>
+              <p>
+                Status: {task.completed ? "Completed" : "Pending"}
+              </p>
+            </div>
+          ))}
+        </div>
+      )}
     </section>
   );
 }

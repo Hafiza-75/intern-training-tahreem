@@ -199,3 +199,18 @@ button:hover {
     padding: 15px;
   }
 }
+
+.loading-message,
+.empty-message {
+  padding: 20px;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.error-message {
+  padding: 15px;
+  color: #dc2626;
+  background-color: #fee2e2;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}

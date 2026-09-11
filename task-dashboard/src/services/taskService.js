@@ -1,17 +1,19 @@
 const API_URL = "https://jsonplaceholder.typicode.com/todos";
 
-// GET TASKS
 export async function getTasks(limit = 5) {
   const response = await fetch(`${API_URL}?_limit=${limit}`);
 
   if (!response.ok) {
-    throw new Error("Failed to fetch tasks");
+    throw new Error(
+      `Failed to fetch tasks. Status: ${response.status}`
+    );
   }
 
-  return await response.json();
+  const data = await response.json();
+
+  return data;
 }
 
-// CREATE TASK
 export async function createTask(taskData) {
   const response = await fetch(API_URL, {
     method: "POST",
@@ -22,8 +24,12 @@ export async function createTask(taskData) {
   });
 
   if (!response.ok) {
-    throw new Error("Failed to create task");
+    throw new Error(
+      `Failed to create task. Status: ${response.status}`
+    );
   }
 
-  return await response.json();
+  const data = await response.json();
+
+  return data;
 }

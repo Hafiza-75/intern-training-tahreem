@@ -31,8 +31,10 @@ section {
 
 h2 {
   color: #2563eb;
+  margin-top: 0;
 }
 
+/* Base Buttons */
 button {
   padding: 10px 18px;
   border: none;
@@ -40,84 +42,100 @@ button {
   color: white;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 0.95rem;
+  transition: background-color 0.2s ease;
 }
 
 button:hover {
   background-color: #1d4ed8;
 }
 
-.task-controls {
+button:disabled {
+  background-color: #93c5fd;
+  cursor: not-allowed;
+}
+
+/* Form Styles - Vertical Column Layout (Upar Neeche) */
+form {
   display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.task-card {
-  padding: 16px;
-  margin-top: 15px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-}
-
-.task-card h3 {
-  margin-top: 0;
-}
-
-.task-list {
-  display: grid;
-  gap: 15px;
-}
-
-.empty-message {
-  text-align: center;
-  padding: 20px;
-}
-
-.task-form-section {
+  flex-direction: column;
+  gap: 16px;
   margin-bottom: 20px;
 }
 
 .form-group {
-  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
 }
 
 .form-group label {
-  display: block;
   margin-bottom: 6px;
   font-weight: bold;
 }
 
 .form-group input,
+.form-group select,
 .form-group textarea {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 6px;
   font-family: inherit;
+  font-size: 1rem;
 }
 
 .form-group textarea {
   resize: vertical;
+  min-height: 80px;
 }
 
-.error-message {
-  margin: 5px 0 0;
-  font-size: 14px;
-  color: #dc2626;
-}
-
+/* Form Buttons Container (Neeche Alag Line Mein) */
 .form-buttons {
   display: flex;
   gap: 10px;
-  flex-wrap: wrap;
+  margin-top: 5px;
 }
 
-.task-buttons {
+/* Task Cards & Actions */
+.task-list {
+  display: grid;
+  gap: 15px;
+}
+
+.task-card {
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  /* Text overflow fix (lamba text bahar nahi niklega) */
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.task-card h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.task-card p {
+  margin: 5px 0 12px;
+  color: #555;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.task-actions,
+.task-buttons,
+.task-controls {
   display: flex;
   gap: 10px;
+  align-items: center;
   flex-wrap: wrap;
 }
 
+/* Filter Controls */
 .task-filters {
   margin-bottom: 20px;
 }
@@ -142,23 +160,34 @@ button:hover {
   min-width: 200px;
 }
 
+/* Feedback Messages */
 .loading-message,
 .empty-message {
+  padding: 20px;
   text-align: center;
-  padding: 30px;
   font-size: 1.1rem;
+  color: #666;
 }
 
-@media (max-width: 600px) {
-  main {
-    padding: 10px;
-  }
-
-  header {
-    padding: 20px 10px;
-  }
+.error-message {
+  padding: 12px;
+  margin: 10px 0 15px;
+  background-color: #fee2e2;
+  color: #b91c1c;
+  border-radius: 6px;
+  border: 1px solid #fca5a5;
 }
 
+.success-message {
+  padding: 12px;
+  margin: 10px 0 15px;
+  background-color: #dcfce7;
+  color: #166534;
+  border-radius: 6px;
+  border: 1px solid #86efac;
+}
+
+/* Responsive Layout */
 @media (max-width: 768px) {
   main {
     padding: 15px;
@@ -173,29 +202,49 @@ button:hover {
     width: 100%;
   }
 
-  .form-buttons,
-  .task-buttons,
-  .task-controls {
-    flex-direction: column;
-  }
-
   .form-buttons button,
-  .task-buttons button,
   .task-controls button {
     width: 100%;
   }
 }
 
-@media (max-width: 480px) {
-  header h1 {
-    font-size: 1.6rem;
-  }
+/* API Form alignment and compact button styling */
+.api-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
 
-  section {
-    padding: 15px;
-  }
+.api-form input[type="text"] {
+  flex: 1;
+  min-width: 220px;
+}
 
-  .task-card {
-    padding: 15px;
-  }
+/* Ensure buttons don't stretch across the entire screen */
+.form-buttons button,
+.api-form button {
+  width: auto !important;
+  padding: 8px 16px;
+  white-space: nowrap;
+}
+
+/* Edit and Delete buttons gap fix */
+.task-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  align-items: center;
+}
+
+.task-actions button {
+  width: auto !important;
+  margin: 0;
+  padding: 8px 14px;
+}
+
+.reload-btn {
+  margin-top: 15px;
+  width: auto !important;
 }

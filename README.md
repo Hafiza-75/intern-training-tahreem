@@ -201,3 +201,21 @@ DELETE → Delete task
 - Fetch API
 - REST API
 - JSON
+
+## Day 15 – Integration Review & API Debugging
+
+### Topics
+- Browser Network Tab Inspection
+- Request & Response Headers Analysis
+- Request Payload Verification
+- HTTP Status Codes (200, 201, 400, 404, 500)
+- API Debugging & Edge-case Handling
+
+### Features
+- End-to-End API Integration Audit
+- Inspecting Fetch/XHR Network Calls
+- Validating Payload & Headers
+- Handling Dummy API Constraints
+
+### Debugging Flow
+Trigger Action → Network Tab → Check Method & Status → Inspect Payload → Verify UI State

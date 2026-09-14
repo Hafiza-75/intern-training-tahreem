@@ -160,3 +160,44 @@ This week focused on learning React and building a reusable, interactive Task Ma
 - Added loading feedback while creating API tasks.
 
 **Technologies:** React, JavaScript, Fetch API, REST API
+
+
+
+## Day 14 – API Forms & CRUD
+
+### Topics
+- API Forms
+- Create, Update and Delete operations
+- POST, PUT and DELETE requests
+- Frontend form validation
+- API error handling
+- Success and error messages
+- Loading states
+- CRUD integration
+
+### Features
+- Fetch tasks from REST API
+- Create new tasks
+- Edit existing tasks
+- Delete tasks
+- Form validation
+- API error handling
+- Success messages
+- Error messages
+- Loading feedback
+- Confirmation before delete
+- Reload tasks
+
+### CRUD Flow
+
+GET → Read tasks
+POST → Create task
+PUT → Update task
+DELETE → Delete task
+
+### Technologies
+- React
+- JavaScript
+- Fetch API
+- REST API
+- JSON

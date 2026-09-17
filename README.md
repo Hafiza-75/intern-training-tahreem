@@ -219,3 +219,55 @@ DELETE → Delete task
 
 ### Debugging Flow
 Trigger Action → Network Tab → Check Method & Status → Inspect Payload → Verify UI State
+
+
+
+# Internship Training — Backend Development
+
+---
+
+## Day 16 – Node.js Fundamentals & Asynchronous JavaScript
+
+### Topics Covered
+* **Runtime Environment:** Setting up Node.js runtime, `npm` initialization, and package management.
+* **Module Architecture:** CommonJS module patterns (`module.exports` and `require()`) vs ES6 Modules (`import`/`export`).
+* **Environment Configuration:** Secure handling of environment variables (`PORT`, `APP_NAME`) using `dotenv`.
+* **Asynchronous Flow Control:** Managing non-blocking operations using ES6 Promises and `async/await`.
+* **Error Handling:** Implementing `try/catch` blocks to gracefully handle runtime and simulated database errors.
+
+### Features Implemented
+* **Modular Configuration:** Decoupled math utilities and app configs into clean, reusable modules.
+* **Environment Isolation:** Configured `.env` files with strict `.gitignore` rules to prevent credential leaks.
+* **Simulated DB Operations:** Built asynchronous functions simulating database tasks with standard delay handling.
+
+---
+
+## Day 17 – NestJS Basics & Architecture
+
+### Topics Covered
+* **Framework Architecture:** Understanding NestJS modular architecture, Dependency Injection (DI), and Inversion of Control (IoC).
+* **Decorators:** Core usage of `@Module`, `@Controller`, and `@Injectable` (Service) decorators.
+* **Routing & Controllers:** Creating RESTful HTTP endpoints (`GET /tasks`, `GET /tasks/:id`).
+* **Services & Providers:** Encapsulating business logic and data manipulation inside injected providers.
+
+### Features Implemented
+* **Tasks Module:** Built a dedicated `TasksModule` encapsulating task management operations.
+* **Controller-Service Mapping:** Injected `TasksService` into `TasksController` to serve dynamic JSON payloads.
+* **Path Parameter Resolution:** Implemented parametrized routes (`:id`) to query specific resource records.
+* **TypeScript Import Cleanup:** Resolved file extension and module declaration mismatches for clean incremental compilation.
+
+---
+
+## Day 18 – DTOs & Request Validation
+
+### Topics Covered
+* **Data Transfer Objects (DTOs):** Defining explicit schema contracts for incoming HTTP request payloads.
+* **Validation Pipe:** Configuring NestJS global `ValidationPipe` for automatic payload sanitization and transformation.
+* **Schema Constraints:** Utilizing `class-validator` decorators (`@IsString`, `@IsNotEmpty`, `@IsBoolean`, `@IsOptional`).
+* **Error Handling:** Returning standard HTTP `400 Bad Request` validation arrays and HTTP `404 Not Found` exceptions.
+
+### Features Implemented
+* **Global Pipe Setup:** Enforced strict payload checks (`whitelist: true`, `forbidNonWhitelisted: true`, `transform: true`).
+* **Data Contracts:** Created `CreateTaskDto` for required resource creation and `UpdateTaskDto` for partial updates (`PATCH`).
+* **Validated CRUD Endpoints:** Connected `POST` and `PATCH` endpoints to service layer methods with auto-validation.
+* **Exception Filters:** Integrated `NotFoundException` handling for unmapped task IDs.

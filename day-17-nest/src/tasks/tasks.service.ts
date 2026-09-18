@@ -2,18 +2,27 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateTaskDto } from './dto/create-task.dto.js';
 import { UpdateTaskDto } from './dto/update-task.dto.js';
 
+export interface Task {
+  id: number;
+  title: string;
+  description: string;
+  completed: boolean;
+}
+
 @Injectable()
 export class TasksService {
-  private tasks = [
-    { id: 1, title: 'Learn NestJS', description: 'Understand NestJS fundamentals', completed: false },
-    { id: 2, title: 'Learn ReactJS', description: 'Understand ReactJS fundamentals', completed: true},
+  private tasks: Task[] = [
+    { id: 1, title: 'Learn NestJS Architecture', description: 'Understand Modules and Controllers', completed: true },
+    { id: 2, title: 'Build CRUD APIs', description: 'Implement full CRUD in NestJS', completed: false },
   ];
 
-  findAll() {
+  // READ ALL (GET /tasks)
+  findAll(): Task[] {
     return this.tasks;
   }
 
-  findOne(id: number) {
+  // READ ONE (GET /tasks/:id)
+  findOne(id: number): Task {
     const task = this.tasks.find((t) => t.id === id);
     if (!task) {
       throw new NotFoundException(`Task with ID ${id} not found`);
@@ -21,8 +30,9 @@ export class TasksService {
     return task;
   }
 
-  create(createTaskDto: CreateTaskDto) {
-    const newTask = {
+  // CREATE (POST /tasks)
+  create(createTaskDto: CreateTaskDto): Task {
+    const newTask: Task = {
       id: Date.now(),
       title: createTaskDto.title,
       description: createTaskDto.description,
@@ -32,9 +42,19 @@ export class TasksService {
     return newTask;
   }
 
-  update(id: number, updateTaskDto: UpdateTaskDto) {
+  // UPDATE (PATCH /tasks/:id)
+  update(id: number, updateTaskDto: UpdateTaskDto): Task {
     const task = this.findOne(id);
     Object.assign(task, updateTaskDto);
     return task;
+  }
+
+  // DELETE (DELETE /tasks/:id)
+  remove(id: number): void {
+    const index = this.tasks.findIndex((t) => t.id === id);
+    if (index === -1) {
+      throw new NotFoundException(`Task with ID ${id} not found`);
+    }
+    this.tasks.splice(index, 1);
   }
 }

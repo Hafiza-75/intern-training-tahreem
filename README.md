@@ -271,3 +271,19 @@ Trigger Action → Network Tab → Check Method & Status → Inspect Payload →
 * **Data Contracts:** Created `CreateTaskDto` for required resource creation and `UpdateTaskDto` for partial updates (`PATCH`).
 * **Validated CRUD Endpoints:** Connected `POST` and `PATCH` endpoints to service layer methods with auto-validation.
 * **Exception Filters:** Integrated `NotFoundException` handling for unmapped task IDs.
+
+
+## Day 19 – CRUD APIs & Route Parameters
+
+### Topics Covered
+* **RESTful CRUD Standards:** Implementing full Create, Read, Update, and Delete routing conventions.
+* **Route Parameter Parsing:** Utilizing NestJS built-in `ParseIntPipe` for automatic string-to-number parameter transformation.
+* **HTTP Response Codes:** Configuring standard status codes (`200 OK`, `201 Created`, `204 No Content`, `404 Not Found`).
+* **In-Memory Data Persistence:** Managing state array operations (`push`, `find`, `splice`, `Object.assign`).
+
+### Features Implemented
+* **GET `/tasks`:** Fetch all registered tasks.
+* **GET `/tasks/:id`:** Query single task by numeric route parameter with auto `404` handling.
+* **POST `/tasks`:** Create new task record with DTO validation.
+* **PATCH `/tasks/:id`:** Update specific task properties dynamically.
+* **DELETE `/tasks/:id`:** Remove task record with `204 No Content` status response.

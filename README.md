@@ -287,3 +287,25 @@ Trigger Action → Network Tab → Check Method & Status → Inspect Payload →
 * **POST `/tasks`:** Create new task record with DTO validation.
 * **PATCH `/tasks/:id`:** Update specific task properties dynamically.
 * **DELETE `/tasks/:id`:** Remove task record with `204 No Content` status response.
+
+
+
+
+
+## Day 20 — Backend Review
+
+### Objective
+
+Review and stabilize the NestJS Task CRUD backend with error handling, validation, status codes, and logging.
+
+### Completed Tasks
+
+* Added NestJS Logger for CRUD operations.
+* Tested `ParseIntPipe` and DTO validation.
+* Handled missing tasks with `NotFoundException`.
+* Tested invalid and unexpected request fields.
+* Verified CRUD HTTP status codes (`200`, `201`, `204`, `400`, `404`).
+
+### Result
+
+Task CRUD APIs were successfully reviewed and tested for common success and error scenarios.

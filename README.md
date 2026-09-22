@@ -8,304 +8,91 @@ This repository contains my tasks, practice work, and mini projects completed du
 
 ---
 
-## Week 1 –  Development Environment & Fundamentals
+## Week 1 – Web Development Fundamentals
 
-This week focused on web development fundamentals, JavaScript, development tools, and GitHub workflow.
+Focused on web fundamentals, JavaScript, development tools, and GitHub workflow.
 
-### Day 1 – Development Environment Setup
-- VS Code, Node.js, npm, Git & GitHub setup
-- Basic Git commands and first commit
+| Day   | Focus             | Work Completed                                        |
+| ----- | ----------------- | ----------------------------------------------------- |
+| Day 1 | Environment Setup | VS Code, Node.js, npm, Git & GitHub setup             |
+| Day 2 | HTML              | HTML fundamentals and Profile Page                    |
+| Day 3 | CSS               | Responsive design using Flexbox, Grid & Media Queries |
+| Day 4 | JavaScript        | JS fundamentals, DOM, events & form handling          |
+| Day 5 | Git & GitHub      | Branching, PRs, merge conflicts & documentation       |
 
-### Day 2 – HTML Fundamentals
-- HTML structure and semantic elements
-- Links, images, lists, tables, and forms
-- **Project:** Basic Profile Page
-
-### Day 3 – Responsive CSS Design
-- CSS selectors, Box Model, Flexbox, and Grid
-- Positioning, spacing, typography, and media queries
-- **Project:** Responsive Profile Page
-
-### Day 4 – JavaScript Fundamentals
-- Variables, functions, conditions, loops, arrays, and objects
-- DOM manipulation, events, and form handling
-- **Project:** Interactive Profile Page
-
-### Day 5 – Git & GitHub Workflow
-- Branching, commits, push/pull, and Pull Requests
-- Merge conflict resolution and README documentation
-- Practiced the complete GitHub workflow
+**Technologies:** `HTML5` `CSS3` `JavaScript` `Git` `GitHub`
 
 ---
 
-### Technologies Used
+## Week 2 – React Frontend Development
 
-`HTML5` `CSS3` `JavaScript` `Git` `GitHub`
+Focused on React fundamentals and building an interactive Task Management Dashboard.
 
-## Week 2 – Modern Frontend Development
+| Day    | Focus              | Work Completed                                          |
+| ------ | ------------------ | ------------------------------------------------------- |
+| Day 6  | React Basics       | Vite setup, components, JSX, props & state              |
+| Day 7  | Components & State | Reusable components, state management & task operations |
+| Day 8  | Forms & Validation | Controlled forms, validation, add & edit tasks          |
+| Day 9  | Lists & Filters    | Dynamic lists, search, filters & sorting                |
+| Day 10 | Dashboard          | Completed responsive Task Management Dashboard          |
 
-This week focused on learning React and building a reusable, interactive Task Management Dashboard.
-
-### Day 6 – React Introduction
-- React setup using Vite
-- Components, JSX, props, state, and event handling
-- **Project:** Started Task Management Dashboard
-
-### Day 7 – Components & State
-- Reusable components and props
-- State management with `useState`
-- Parent-child communication
-- Conditional rendering
-- Added, updated, and removed tasks
-
-### Day 8 – Forms & Validation
-- Controlled inputs and form state
-- Form validation and error handling
-- Add and edit task functionality
-- Form reset and cancel handling
-
-### Day 9 – Lists & Filters
-- Dynamic lists and React keys
-- Search and status filtering
-- Priority filtering and sorting
-- Loading and empty states
-
-### Day 10 – Task Management Dashboard
-- Combined React components, state, forms, validation, search, and filters
-- Built a responsive Task Management Dashboard
-- Implemented complete task management functionality
-
-### Technologies Used
-
-`React` `JavaScript` `CSS3` `Vite`
-
-## Week 3 –  APIs & Frontend Integration
-
-
-## Day 11 – HTTP & REST APIs
-
-### Topics Covered
-
-- HTTP Request and Response Cycle
-- REST APIs
-- JSON Data
-- GET, POST, PUT, PATCH, and DELETE Methods
-- HTTP Status Codes
-- API Integration using Fetch
-- Loading and Error States
-
-### Practical Work
-
-- Created an API component to fetch task data.
-- Used the `fetch()` API to send a GET request.
-- Converted the API response from JSON.
-- Stored API data using React state.
-- Implemented loading and error states.
-- Displayed API data dynamically in the React application.
-- Observed the API request and response using Browser DevTools.
-
-**Technologies:** React, JavaScript, REST API, Fetch API
+**Technologies:** `React` `JavaScript` `CSS3` `Vite`
 
 ---
 
-## Day 12 – API Integration
+## Week 3 – REST APIs & Frontend Integration
 
-### Topics Covered
+Focused on API concepts, Fetch API, CRUD operations, API states, and debugging.
 
-- Fetch API
-- API Services
-- GET Requests
-- POST Requests
-- Request Parameters
-- Request Body
-- JSON Data
-- Response Handling
-- Loading and Error States
+| Day    | Focus            | Work Completed                                     |
+| ------ | ---------------- | -------------------------------------------------- |
+| Day 11 | HTTP & REST APIs | HTTP methods, REST, JSON, Fetch & API states       |
+| Day 12 | API Integration  | Created reusable API service with GET & POST       |
+| Day 13 | API States       | Loading, success, empty, error & retry states      |
+| Day 14 | API CRUD         | Create, Read, Update & Delete task operations      |
+| Day 15 | API Debugging    | Network inspection, payloads, headers & edge cases |
 
-### Practical Work
-
-- Created a reusable API service for handling API requests.
-- Separated API logic from React components.
-- Used query parameters to control the number of tasks fetched.
-- Implemented a GET request to retrieve tasks.
-- Implemented a POST request to create a new task.
-- Sent task data through the request body.
-- Handled successful and failed API responses.
-- Added loading, creating, and error states.
-
-**Technologies Used:** React, JavaScript, Fetch API, REST API
-
-
+**Technologies:** `React` `JavaScript` `Fetch API` `REST API` `JSON`
 
 ---
 
-## Day 13 – API States
+## Week 4 – Backend Development with Node.js & NestJS
 
-### Topics Covered
+Focused on backend fundamentals, NestJS architecture, validation, CRUD APIs, error handling, and logging.
 
-- Loading State
-- Success State
-- Empty State
-- Error State
-- Retry Handling
-- API Response Handling
+| Day    | Focus            | Work Completed                                                    |
+| ------ | ---------------- | ----------------------------------------------------------------- |
+| Day 16 | Node.js          | npm, modules, environment variables, async/await & error handling |
+| Day 17 | NestJS           | Modules, controllers, services, DI & REST routes                  |
+| Day 18 | DTO & Validation | DTOs, ValidationPipe, request validation & exceptions             |
+| Day 19 | CRUD APIs        | Complete Task CRUD with route parameters & status codes           |
+| Day 20 | Backend Review   | Error handling, validation, status codes & NestJS logging         |
 
-### Features Implemented
-
-- Added a loading state while API data is being fetched.
-- Implemented successful API data rendering.
-- Added an empty state when no API tasks are available.
-- Implemented error handling for failed API requests.
-- Added a Retry button to reattempt failed API requests.
-- Added loading feedback while creating API tasks.
-
-**Technologies:** React, JavaScript, Fetch API, REST API
-
-
-
-## Day 14 – API Forms & CRUD
-
-### Topics
-- API Forms
-- Create, Update and Delete operations
-- POST, PUT and DELETE requests
-- Frontend form validation
-- API error handling
-- Success and error messages
-- Loading states
-- CRUD integration
-
-### Features
-- Fetch tasks from REST API
-- Create new tasks
-- Edit existing tasks
-- Delete tasks
-- Form validation
-- API error handling
-- Success messages
-- Error messages
-- Loading feedback
-- Confirmation before delete
-- Reload tasks
-
-### CRUD Flow
-
-GET → Read tasks
-POST → Create task
-PUT → Update task
-DELETE → Delete task
-
-### Technologies
-- React
-- JavaScript
-- Fetch API
-- REST API
-- JSON
-
-## Day 15 – Integration Review & API Debugging
-
-### Topics
-- Browser Network Tab Inspection
-- Request & Response Headers Analysis
-- Request Payload Verification
-- HTTP Status Codes (200, 201, 400, 404, 500)
-- API Debugging & Edge-case Handling
-
-### Features
-- End-to-End API Integration Audit
-- Inspecting Fetch/XHR Network Calls
-- Validating Payload & Headers
-- Handling Dummy API Constraints
-
-### Debugging Flow
-Trigger Action → Network Tab → Check Method & Status → Inspect Payload → Verify UI State
-
-
-
-# Internship Training — Backend Development
+**Technologies:** `Node.js` `NestJS` `TypeScript` `REST API` `class-validator`
 
 ---
 
-## Day 16 – Node.js Fundamentals & Asynchronous JavaScript
+## Overall Training
 
-### Topics Covered
-* **Runtime Environment:** Setting up Node.js runtime, `npm` initialization, and package management.
-* **Module Architecture:** CommonJS module patterns (`module.exports` and `require()`) vs ES6 Modules (`import`/`export`).
-* **Environment Configuration:** Secure handling of environment variables (`PORT`, `APP_NAME`) using `dotenv`.
-* **Asynchronous Flow Control:** Managing non-blocking operations using ES6 Promises and `async/await`.
-* **Error Handling:** Implementing `try/catch` blocks to gracefully handle runtime and simulated database errors.
+During the four-week training, I worked across **frontend and backend development**, progressing from web fundamentals and React to REST API integration and NestJS backend development.
 
-### Features Implemented
-* **Modular Configuration:** Decoupled math utilities and app configs into clean, reusable modules.
-* **Environment Isolation:** Configured `.env` files with strict `.gitignore` rules to prevent credential leaks.
-* **Simulated DB Operations:** Built asynchronous functions simulating database tasks with standard delay handling.
-
----
-
-## Day 17 – NestJS Basics & Architecture
-
-### Topics Covered
-* **Framework Architecture:** Understanding NestJS modular architecture, Dependency Injection (DI), and Inversion of Control (IoC).
-* **Decorators:** Core usage of `@Module`, `@Controller`, and `@Injectable` (Service) decorators.
-* **Routing & Controllers:** Creating RESTful HTTP endpoints (`GET /tasks`, `GET /tasks/:id`).
-* **Services & Providers:** Encapsulating business logic and data manipulation inside injected providers.
-
-### Features Implemented
-* **Tasks Module:** Built a dedicated `TasksModule` encapsulating task management operations.
-* **Controller-Service Mapping:** Injected `TasksService` into `TasksController` to serve dynamic JSON payloads.
-* **Path Parameter Resolution:** Implemented parametrized routes (`:id`) to query specific resource records.
-* **TypeScript Import Cleanup:** Resolved file extension and module declaration mismatches for clean incremental compilation.
-
----
-
-## Day 18 – DTOs & Request Validation
-
-### Topics Covered
-* **Data Transfer Objects (DTOs):** Defining explicit schema contracts for incoming HTTP request payloads.
-* **Validation Pipe:** Configuring NestJS global `ValidationPipe` for automatic payload sanitization and transformation.
-* **Schema Constraints:** Utilizing `class-validator` decorators (`@IsString`, `@IsNotEmpty`, `@IsBoolean`, `@IsOptional`).
-* **Error Handling:** Returning standard HTTP `400 Bad Request` validation arrays and HTTP `404 Not Found` exceptions.
-
-### Features Implemented
-* **Global Pipe Setup:** Enforced strict payload checks (`whitelist: true`, `forbidNonWhitelisted: true`, `transform: true`).
-* **Data Contracts:** Created `CreateTaskDto` for required resource creation and `UpdateTaskDto` for partial updates (`PATCH`).
-* **Validated CRUD Endpoints:** Connected `POST` and `PATCH` endpoints to service layer methods with auto-validation.
-* **Exception Filters:** Integrated `NotFoundException` handling for unmapped task IDs.
-
-
-## Day 19 – CRUD APIs & Route Parameters
-
-### Topics Covered
-* **RESTful CRUD Standards:** Implementing full Create, Read, Update, and Delete routing conventions.
-* **Route Parameter Parsing:** Utilizing NestJS built-in `ParseIntPipe` for automatic string-to-number parameter transformation.
-* **HTTP Response Codes:** Configuring standard status codes (`200 OK`, `201 Created`, `204 No Content`, `404 Not Found`).
-* **In-Memory Data Persistence:** Managing state array operations (`push`, `find`, `splice`, `Object.assign`).
-
-### Features Implemented
-* **GET `/tasks`:** Fetch all registered tasks.
-* **GET `/tasks/:id`:** Query single task by numeric route parameter with auto `404` handling.
-* **POST `/tasks`:** Create new task record with DTO validation.
-* **PATCH `/tasks/:id`:** Update specific task properties dynamically.
-* **DELETE `/tasks/:id`:** Remove task record with `204 No Content` status response.
+**Key Areas:**
+`Frontend Development` `React` `REST APIs` `Node.js` `NestJS` `CRUD` `Git & GitHub` `API Debugging` `Validation` `Error Handling`
 
 
 
 
 
-## Day 20 — Backend Review
+## Week 5 – Database & ORM
 
-### Objective
+This week focuses on understanding relational databases, SQL, ORM concepts, and connecting databases with backend APIs.
 
-Review and stabilize the NestJS Task CRUD backend with error handling, validation, status codes, and logging.
+| Day    | Focus              | Work Planned                                                                 |
+| ------ | ------------------ | ---------------------------------------------------------------------------- |
+| Day 21 | Database Basics    | Databases, tables, rows, columns, primary keys, foreign keys & relationships |
 
-### Completed Tasks
+**Technologies:** `SQL` `Relational Database` `Prisma/ORM` `NestJS`
 
-* Added NestJS Logger for CRUD operations.
-* Tested `ParseIntPipe` and DTO validation.
-* Handled missing tasks with `NotFoundException`.
-* Tested invalid and unexpected request fields.
-* Verified CRUD HTTP status codes (`200`, `201`, `204`, `400`, `404`).
+### Week 5 Goal
 
-### Result
-
-Task CRUD APIs were successfully reviewed and tested for common success and error scenarios.
+By the end of this week, I will understand relational database structure, primary and foreign keys, relationships, SQL CRUD operations, ORM usage, and database-backed backend APIs.

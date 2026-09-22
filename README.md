@@ -82,7 +82,6 @@ During the four-week training, I worked across **frontend and backend developmen
 
 
 
-
 ## Week 5 – Database & ORM
 
 This week focuses on understanding relational databases, SQL, ORM concepts, and connecting databases with backend APIs.
@@ -90,6 +89,7 @@ This week focuses on understanding relational databases, SQL, ORM concepts, and 
 | Day    | Focus              | Work Planned                                                                 |
 | ------ | ------------------ | ---------------------------------------------------------------------------- |
 | Day 21 | Database Basics    | Databases, tables, rows, columns, primary keys, foreign keys & relationships |
+| Day 22 | SQL                | SELECT, INSERT, UPDATE, DELETE, WHERE, ORDER BY & JOIN basics                |
 
 **Technologies:** `SQL` `Relational Database` `Prisma/ORM` `NestJS`
 

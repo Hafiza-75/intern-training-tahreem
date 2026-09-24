@@ -219,3 +219,21 @@ DELETE → Delete task
 
 ### Debugging Flow
 Trigger Action → Network Tab → Check Method & Status → Inspect Payload → Verify UI State
+
+
+### Day 23 — Prisma ORM
+
+- Set up Prisma ORM with Prisma 7 and SQLite.
+- Created `User` and `Task` Prisma models.
+- Implemented a one-to-many relationship between Users and Tasks.
+- Created and applied the initial database migration.
+- Generated Prisma Client.
+- Practiced Prisma CRUD queries:
+  - `create()`
+  - `findMany()`
+  - `findUnique()`
+  - `update()`
+  - `delete()`
+- Practiced loading related tasks using `include`.
+- Created `prisma/prisma-queries.ts` for Prisma query practice.
+- Verified database operations successfully through the terminal.

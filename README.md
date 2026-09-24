@@ -95,4 +95,101 @@ This week focuses on understanding relational databases, SQL, ORM concepts, and 
 
 ### Week 5 Goal
 
-By the end of this week, I will understand relational database structure, primary and foreign keys, relationships, SQL CRUD operations, ORM usage, and database-backed backend APIs.
+## Day 13 – API States
+
+### Topics Covered
+
+- Loading State
+- Success State
+- Empty State
+- Error State
+- Retry Handling
+- API Response Handling
+
+### Features Implemented
+
+- Added a loading state while API data is being fetched.
+- Implemented successful API data rendering.
+- Added an empty state when no API tasks are available.
+- Implemented error handling for failed API requests.
+- Added a Retry button to reattempt failed API requests.
+- Added loading feedback while creating API tasks.
+
+**Technologies:** React, JavaScript, Fetch API, REST API
+
+
+
+## Day 14 – API Forms & CRUD
+
+### Topics
+- API Forms
+- Create, Update and Delete operations
+- POST, PUT and DELETE requests
+- Frontend form validation
+- API error handling
+- Success and error messages
+- Loading states
+- CRUD integration
+
+### Features
+- Fetch tasks from REST API
+- Create new tasks
+- Edit existing tasks
+- Delete tasks
+- Form validation
+- API error handling
+- Success messages
+- Error messages
+- Loading feedback
+- Confirmation before delete
+- Reload tasks
+
+### CRUD Flow
+
+GET → Read tasks
+POST → Create task
+PUT → Update task
+DELETE → Delete task
+
+### Technologies
+- React
+- JavaScript
+- Fetch API
+- REST API
+- JSON
+
+## Day 15 – Integration Review & API Debugging
+
+### Topics
+- Browser Network Tab Inspection
+- Request & Response Headers Analysis
+- Request Payload Verification
+- HTTP Status Codes (200, 201, 400, 404, 500)
+- API Debugging & Edge-case Handling
+
+### Features
+- End-to-End API Integration Audit
+- Inspecting Fetch/XHR Network Calls
+- Validating Payload & Headers
+- Handling Dummy API Constraints
+
+### Debugging Flow
+Trigger Action → Network Tab → Check Method & Status → Inspect Payload → Verify UI State
+
+
+### Day 23 — Prisma ORM
+
+- Set up Prisma ORM with Prisma 7 and SQLite.
+- Created `User` and `Task` Prisma models.
+- Implemented a one-to-many relationship between Users and Tasks.
+- Created and applied the initial database migration.
+- Generated Prisma Client.
+- Practiced Prisma CRUD queries:
+  - `create()`
+  - `findMany()`
+  - `findUnique()`
+  - `update()`
+  - `delete()`
+- Practiced loading related tasks using `include`.
+- Created `prisma/prisma-queries.ts` for Prisma query practice.
+- Verified database operations successfully through the terminal.

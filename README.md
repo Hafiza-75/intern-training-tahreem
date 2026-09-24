@@ -8,136 +8,92 @@ This repository contains my tasks, practice work, and mini projects completed du
 
 ---
 
-## Week 1 –  Development Environment & Fundamentals
+## Week 1 – Web Development Fundamentals
 
-This week focused on web development fundamentals, JavaScript, development tools, and GitHub workflow.
+Focused on web fundamentals, JavaScript, development tools, and GitHub workflow.
 
-### Day 1 – Development Environment Setup
-- VS Code, Node.js, npm, Git & GitHub setup
-- Basic Git commands and first commit
+| Day   | Focus             | Work Completed                                        |
+| ----- | ----------------- | ----------------------------------------------------- |
+| Day 1 | Environment Setup | VS Code, Node.js, npm, Git & GitHub setup             |
+| Day 2 | HTML              | HTML fundamentals and Profile Page                    |
+| Day 3 | CSS               | Responsive design using Flexbox, Grid & Media Queries |
+| Day 4 | JavaScript        | JS fundamentals, DOM, events & form handling          |
+| Day 5 | Git & GitHub      | Branching, PRs, merge conflicts & documentation       |
 
-### Day 2 – HTML Fundamentals
-- HTML structure and semantic elements
-- Links, images, lists, tables, and forms
-- **Project:** Basic Profile Page
-
-### Day 3 – Responsive CSS Design
-- CSS selectors, Box Model, Flexbox, and Grid
-- Positioning, spacing, typography, and media queries
-- **Project:** Responsive Profile Page
-
-### Day 4 – JavaScript Fundamentals
-- Variables, functions, conditions, loops, arrays, and objects
-- DOM manipulation, events, and form handling
-- **Project:** Interactive Profile Page
-
-### Day 5 – Git & GitHub Workflow
-- Branching, commits, push/pull, and Pull Requests
-- Merge conflict resolution and README documentation
-- Practiced the complete GitHub workflow
+**Technologies:** `HTML5` `CSS3` `JavaScript` `Git` `GitHub`
 
 ---
 
-### Technologies Used
+## Week 2 – React Frontend Development
 
-`HTML5` `CSS3` `JavaScript` `Git` `GitHub`
+Focused on React fundamentals and building an interactive Task Management Dashboard.
 
-## Week 2 – Modern Frontend Development
+| Day    | Focus              | Work Completed                                          |
+| ------ | ------------------ | ------------------------------------------------------- |
+| Day 6  | React Basics       | Vite setup, components, JSX, props & state              |
+| Day 7  | Components & State | Reusable components, state management & task operations |
+| Day 8  | Forms & Validation | Controlled forms, validation, add & edit tasks          |
+| Day 9  | Lists & Filters    | Dynamic lists, search, filters & sorting                |
+| Day 10 | Dashboard          | Completed responsive Task Management Dashboard          |
 
-This week focused on learning React and building a reusable, interactive Task Management Dashboard.
-
-### Day 6 – React Introduction
-- React setup using Vite
-- Components, JSX, props, state, and event handling
-- **Project:** Started Task Management Dashboard
-
-### Day 7 – Components & State
-- Reusable components and props
-- State management with `useState`
-- Parent-child communication
-- Conditional rendering
-- Added, updated, and removed tasks
-
-### Day 8 – Forms & Validation
-- Controlled inputs and form state
-- Form validation and error handling
-- Add and edit task functionality
-- Form reset and cancel handling
-
-### Day 9 – Lists & Filters
-- Dynamic lists and React keys
-- Search and status filtering
-- Priority filtering and sorting
-- Loading and empty states
-
-### Day 10 – Task Management Dashboard
-- Combined React components, state, forms, validation, search, and filters
-- Built a responsive Task Management Dashboard
-- Implemented complete task management functionality
-
-### Technologies Used
-
-`React` `JavaScript` `CSS3` `Vite`
-
-## Week 3 –  APIs & Frontend Integration
-
-
-## Day 11 – HTTP & REST APIs
-
-### Topics Covered
-
-- HTTP Request and Response Cycle
-- REST APIs
-- JSON Data
-- GET, POST, PUT, PATCH, and DELETE Methods
-- HTTP Status Codes
-- API Integration using Fetch
-- Loading and Error States
-
-### Practical Work
-
-- Created an API component to fetch task data.
-- Used the `fetch()` API to send a GET request.
-- Converted the API response from JSON.
-- Stored API data using React state.
-- Implemented loading and error states.
-- Displayed API data dynamically in the React application.
-- Observed the API request and response using Browser DevTools.
-
-**Technologies:** React, JavaScript, REST API, Fetch API
+**Technologies:** `React` `JavaScript` `CSS3` `Vite`
 
 ---
 
-## Day 12 – API Integration
+## Week 3 – REST APIs & Frontend Integration
 
-### Topics Covered
+Focused on API concepts, Fetch API, CRUD operations, API states, and debugging.
 
-- Fetch API
-- API Services
-- GET Requests
-- POST Requests
-- Request Parameters
-- Request Body
-- JSON Data
-- Response Handling
-- Loading and Error States
+| Day    | Focus            | Work Completed                                     |
+| ------ | ---------------- | -------------------------------------------------- |
+| Day 11 | HTTP & REST APIs | HTTP methods, REST, JSON, Fetch & API states       |
+| Day 12 | API Integration  | Created reusable API service with GET & POST       |
+| Day 13 | API States       | Loading, success, empty, error & retry states      |
+| Day 14 | API CRUD         | Create, Read, Update & Delete task operations      |
+| Day 15 | API Debugging    | Network inspection, payloads, headers & edge cases |
 
-### Practical Work
-
-- Created a reusable API service for handling API requests.
-- Separated API logic from React components.
-- Used query parameters to control the number of tasks fetched.
-- Implemented a GET request to retrieve tasks.
-- Implemented a POST request to create a new task.
-- Sent task data through the request body.
-- Handled successful and failed API responses.
-- Added loading, creating, and error states.
-
-**Technologies Used:** React, JavaScript, Fetch API, REST API
-
-
+**Technologies:** `React` `JavaScript` `Fetch API` `REST API` `JSON`
 
 ---
+
+## Week 4 – Backend Development with Node.js & NestJS
+
+Focused on backend fundamentals, NestJS architecture, validation, CRUD APIs, error handling, and logging.
+
+| Day    | Focus            | Work Completed                                                    |
+| ------ | ---------------- | ----------------------------------------------------------------- |
+| Day 16 | Node.js          | npm, modules, environment variables, async/await & error handling |
+| Day 17 | NestJS           | Modules, controllers, services, DI & REST routes                  |
+| Day 18 | DTO & Validation | DTOs, ValidationPipe, request validation & exceptions             |
+| Day 19 | CRUD APIs        | Complete Task CRUD with route parameters & status codes           |
+| Day 20 | Backend Review   | Error handling, validation, status codes & NestJS logging         |
+
+**Technologies:** `Node.js` `NestJS` `TypeScript` `REST API` `class-validator`
+
+---
+
+## Overall Training
+
+During the four-week training, I worked across **frontend and backend development**, progressing from web fundamentals and React to REST API integration and NestJS backend development.
+
+**Key Areas:**
+`Frontend Development` `React` `REST APIs` `Node.js` `NestJS` `CRUD` `Git & GitHub` `API Debugging` `Validation` `Error Handling`
+
+
+
+
+## Week 5 – Database & ORM
+
+This week focuses on understanding relational databases, SQL, ORM concepts, and connecting databases with backend APIs.
+
+| Day    | Focus              | Work Planned                                                                 |
+| ------ | ------------------ | ---------------------------------------------------------------------------- |
+| Day 21 | Database Basics    | Databases, tables, rows, columns, primary keys, foreign keys & relationships |
+| Day 22 | SQL                | SELECT, INSERT, UPDATE, DELETE, WHERE, ORDER BY & JOIN basics                |
+
+**Technologies:** `SQL` `Relational Database` `Prisma/ORM` `NestJS`
+
+### Week 5 Goal
 
 ## Day 13 – API States
 

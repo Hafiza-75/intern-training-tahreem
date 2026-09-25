@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Task API Testing</title>
+</head>
+<body>
+
+  <h1>Task API Testing</h1>
+
+  <button onclick="getTasks()">GET All Tasks</button>
+  <button onclick="getTask()">GET Task 1</button>
+  <button onclick="createTask()">POST Create Task</button>
+  <button onclick="updateTask()">PATCH Task 1</button>
+  <button onclick="deleteTask()">DELETE Task 1</button>
+
+  <pre id="output"></pre>
+
+  <script>
+    const API_URL = 'http://localhost:3000/tasks';
+
+    async function getTasks() {
+      const response = await fetch(API_URL);
+      const data = await response.json();
+
+      document.getElementById('output').textContent =
+        JSON.stringify(data, null, 2);
+    }
+
+    async function getTask() {
+      const response = await fetch(`${API_URL}/1`);
+      const data = await response.json();
+
+      document.getElementById('output').textContent =
+        JSON.stringify(data, null, 2);
+    }
+
+    async function createTask() {
+      const response = await fetch(API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          title: 'Learn Prisma',
+          description: 'Connect NestJS with Prisma',
+          completed: false,
+          userId: 1
+        })
+      });
+
+      const data = await response.json();
+
+      document.getElementById('output').textContent =
+        JSON.stringify(data, null, 2);
+    }
+
+    async function updateTask() {
+      const response = await fetch(`${API_URL}/1`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          completed: true
+        })
+      });
+
+      const data = await response.json();
+
+      document.getElementById('output').textContent =
+        JSON.stringify(data, null, 2);
+    }
+
+    async function deleteTask() {
+      const response = await fetch(`${API_URL}/1`, {
+        method: 'DELETE'
+      });
+
+      document.getElementById('output').textContent =
+        `Status: ${response.status}`;
+    }
+  </script>
+
+</body>
+</html>

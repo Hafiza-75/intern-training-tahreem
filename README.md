@@ -193,3 +193,24 @@ Trigger Action → Network Tab → Check Method & Status → Inspect Payload →
 - Practiced loading related tasks using `include`.
 - Created `prisma/prisma-queries.ts` for Prisma query practice.
 - Verified database operations successfully through the terminal.
+
+
+
+### Day 24 — Backend + Database Integration
+
+- Connected the NestJS backend with Prisma ORM and SQLite.
+- Created a reusable `PrismaService` for database access.
+- Replaced the in-memory task array with database operations.
+- Connected Task CRUD APIs with Prisma.
+- Implemented database operations using:
+  - `findMany()`
+  - `findUnique()`
+  - `create()`
+  - `update()`
+  - `delete()`
+- Connected Users and Tasks through a one-to-many relationship.
+- Added `userId` validation when creating tasks.
+- Tested task creation, retrieval, update, and deletion through the API.
+- Tested User → Tasks relationship.
+- Tested invalid user handling with 404 response.
+- Verified database persistence after restarting the NestJS server.

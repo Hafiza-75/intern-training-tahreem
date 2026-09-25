@@ -1,3 +1,4 @@
+import { PrismaService } from './prisma.service.js';
 import { Module } from '@nestjs/common';
 import { createObserveModule } from '@nestjs/observe';
 import { AppController } from './app.controller.js';
@@ -9,6 +10,6 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
 @Module({
   imports: [TasksModule],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, PrismaService],
 })
 export class AppModule {}

@@ -1,42 +1,40 @@
-import { Injectable, Logger, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  Logger,
+  NotFoundException,
+} from '@nestjs/common';
+
+import { PrismaService } from '../prisma.service.js';
 import { CreateTaskDto } from './dto/create-task.dto.js';
 import { UpdateTaskDto } from './dto/update-task.dto.js';
-
-export interface Task {
-  id: number;
-  title: string;
-  description: string;
-  completed: boolean;
-}
 
 @Injectable()
 export class TasksService {
   private readonly logger = new Logger(TasksService.name);
 
-  private tasks: Task[] = [
-    {
-      id: 1,
-      title: 'Learn NestJS Architecture',
-      description: 'Understand Modules and Controllers',
-      completed: true,
-    },
-    {
-      id: 2,
-      title: 'Build CRUD APIs',
-      description: 'Implement full CRUD in NestJS',
-      completed: false,
-    },
-  ];
+  constructor(private readonly prisma: PrismaService) {}
 
-  // READ ALL
-  findAll(): Task[] {
-    this.logger.log(`Fetching all tasks. Total tasks: ${this.tasks.length}`);
-    return this.tasks;
+  async findAll() {
+    const tasks = await this.prisma.task.findMany({
+      include: {
+        user: true,
+      },
+    });
+
+    this.logger.log(`Fetched ${tasks.length} tasks from database`);
+
+    return tasks;
   }
 
-  // READ ONE
-  findOne(id: number): Task {
-    const task = this.tasks.find((t) => t.id === id);
+  async findOne(id: number) {
+    const task = await this.prisma.task.findUnique({
+      where: {
+        id,
+      },
+      include: {
+        user: true,
+      },
+    });
 
     if (!task) {
       this.logger.warn(`Task with ID ${id} not found`);
@@ -44,46 +42,66 @@ export class TasksService {
     }
 
     this.logger.log(`Task with ID ${id} fetched successfully`);
+
     return task;
   }
 
-  // CREATE
-  create(createTaskDto: CreateTaskDto): Task {
-    const newTask: Task = {
-      id: Date.now(),
-      title: createTaskDto.title,
-      description: createTaskDto.description,
-      completed: createTaskDto.completed ?? false,
-    };
+  async create(createTaskDto: CreateTaskDto) {
+    const user = await this.prisma.user.findUnique({
+      where: {
+        id: createTaskDto.userId,
+      },
+    });
 
-    this.tasks.push(newTask);
+    if (!user) {
+      throw new NotFoundException(
+        `User with ID ${createTaskDto.userId} not found`,
+      );
+    }
 
-    this.logger.log(`Task created successfully with ID ${newTask.id}`);
+    const task = await this.prisma.task.create({
+      data: {
+        title: createTaskDto.title,
+        description: createTaskDto.description,
+        completed: createTaskDto.completed ?? false,
+        userId: createTaskDto.userId,
+      },
+      include: {
+        user: true,
+      },
+    });
 
-    return newTask;
+    this.logger.log(`Task created successfully with ID ${task.id}`);
+
+    return task;
   }
 
-  // UPDATE
-  update(id: number, updateTaskDto: UpdateTaskDto): Task {
-    const task = this.findOne(id);
+  async update(id: number, updateTaskDto: UpdateTaskDto) {
+    await this.findOne(id);
 
-    Object.assign(task, updateTaskDto);
+    const task = await this.prisma.task.update({
+      where: {
+        id,
+      },
+      data: updateTaskDto,
+      include: {
+        user: true,
+      },
+    });
 
     this.logger.log(`Task with ID ${id} updated successfully`);
 
     return task;
   }
 
-  // DELETE
-  remove(id: number): void {
-    const index = this.tasks.findIndex((t) => t.id === id);
+  async remove(id: number) {
+    await this.findOne(id);
 
-    if (index === -1) {
-      this.logger.warn(`Cannot delete task. ID ${id} not found`);
-      throw new NotFoundException(`Task with ID ${id} not found`);
-    }
-
-    this.tasks.splice(index, 1);
+    await this.prisma.task.delete({
+      where: {
+        id,
+      },
+    });
 
     this.logger.log(`Task with ID ${id} deleted successfully`);
   }

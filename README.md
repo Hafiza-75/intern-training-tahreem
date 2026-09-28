@@ -217,3 +217,20 @@ Trigger Action → Network Tab → Check Method & Status → Inspect Payload →
 
 
 http://localhost:3000/tasks
+
+
+
+
+### Day 26 — Authentication
+
+- Implemented user registration and login functionality.
+- Added email and password fields to the User model.
+- Added RegisterDto and LoginDto with validation.
+- Implemented password hashing using bcrypt.
+- Implemented password verification during login.
+- Added duplicate email handling.
+- Added invalid login handling with proper HTTP status codes.
+- Tested registration and login APIs using Thunder Client.
+- Tested negative cases including wrong password and duplicate email.
+- Ensured passwords are not returned in API responses.
+- Completed Day 26 Authentication practical work.

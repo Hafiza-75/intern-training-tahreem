@@ -234,3 +234,19 @@ http://localhost:3000/tasks
 - Tested negative cases including wrong password and duplicate email.
 - Ensured passwords are not returned in API responses.
 - Completed Day 26 Authentication practical work.
+
+
+### Day 27 — JWT Authentication
+
+* Installed and configured `@nestjs/jwt`, `@nestjs/passport`, `passport`, and `passport-jwt`.
+* Configured JWT authentication using a secret stored in environment variables.
+* Added JWT access token generation during user login.
+* Configured JWT token expiration for 1 hour.
+* Created `JwtStrategy` to validate JWT tokens.
+* Created `JwtAuthGuard` to protect authenticated routes.
+* Added a protected `/auth/profile` endpoint.
+* Tested protected route access without a token.
+* Tested protected route access with a valid JWT token.
+* Tested invalid JWT token handling.
+* Verified successful authentication and unauthorized access responses.
+* Completed Day 27 JWT Authentication practical work.

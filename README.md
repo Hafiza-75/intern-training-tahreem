@@ -250,3 +250,20 @@ http://localhost:3000/tasks
 * Tested invalid JWT token handling.
 * Verified successful authentication and unauthorized access responses.
 * Completed Day 27 JWT Authentication practical work.
+
+
+### Day 28 — Authorization: Roles & Permissions
+
+* Added role-based authorization to the authentication system.
+* Added `USER` and `ADMIN` roles to the User model.
+* Added a default `USER` role for newly registered users.
+* Created and applied a database migration for user roles.
+* Included the user's role in the JWT payload.
+* Updated JWT strategy validation to include the authenticated user's role.
+* Created a `Roles` decorator for defining required roles on routes.
+* Created a `RolesGuard` to enforce role-based access control.
+* Added an admin-only protected endpoint.
+* Tested access to the admin endpoint without authentication and verified `401 Unauthorized`.
+* Tested access with a normal USER account and verified `403 Forbidden`.
+* Tested access with an ADMIN account and verified successful authorization.
+* Completed Day 28 Authorization practical work.

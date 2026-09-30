@@ -9,6 +9,9 @@ import {
 
 import { AuthService } from './auth.service.js';
 import { JwtAuthGuard } from './jwt-auth.guard.js';
+import { Roles } from './roles.decorator.js';
+import { RolesGuard } from './roles.guard.js';
+
 import { RegisterDto } from './dto/register.dto.js';
 import { LoginDto } from './dto/login.dto.js';
 
@@ -31,6 +34,16 @@ export class AuthController {
   getProfile(@Req() request: any) {
     return {
       message: 'This is a protected profile',
+      user: request.user,
+    };
+  }
+
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('ADMIN')
+  @Get('admin')
+  getAdminData(@Req() request: any) {
+    return {
+      message: 'Welcome Admin',
       user: request.user,
     };
   }

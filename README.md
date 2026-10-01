@@ -282,3 +282,23 @@ http://localhost:3000/tasks
 * Reviewed JWT authentication and role-based authorization security.
 * Verified unauthorized and forbidden API access handling.
 * Completed Day 29 Security practical work.
+
+
+### Day 30 — Authentication & Security Review
+
+* Performed end-to-end testing of the authentication system.
+* Tested successful user registration.
+* Tested duplicate email registration and verified `409 Conflict`.
+* Tested invalid email and short password validation.
+* Tested successful login with valid credentials.
+* Tested incorrect password and non-existing user login.
+* Verified JWT access token generation.
+* Tested protected profile access without a token.
+* Tested protected profile access with a valid JWT token.
+* Tested invalid JWT token handling.
+* Tested role-based authorization for USER and ADMIN accounts.
+* Verified `403 Forbidden` for users without the required role.
+* Verified successful access for ADMIN users.
+* Reviewed password hashing and sensitive data protection.
+* Reviewed input validation, SQL injection prevention, XSS protection, and environment variable security.
+* Completed the Week 6 Authentication & Security practical review.

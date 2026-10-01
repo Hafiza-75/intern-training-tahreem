@@ -267,3 +267,18 @@ http://localhost:3000/tasks
 * Tested access with a normal USER account and verified `403 Forbidden`.
 * Tested access with an ADMIN account and verified successful authorization.
 * Completed Day 28 Authorization practical work.
+
+
+### Day 29 — Security
+
+* Reviewed and verified global input validation using NestJS ValidationPipe.
+* Verified environment variables are used for database configuration and JWT secrets.
+* Updated `.gitignore` to prevent environment files from being committed.
+* Verified passwords are hashed using bcrypt and never exposed in API responses.
+* Tested invalid email input and verified `400 Bad Request`.
+* Reviewed Prisma queries and their protection against SQL injection through parameterized queries.
+* Tested SQL injection-like input and verified authentication was not bypassed.
+* Tested HTML/script input handling and reviewed safe output rendering practices in React.
+* Reviewed JWT authentication and role-based authorization security.
+* Verified unauthorized and forbidden API access handling.
+* Completed Day 29 Security practical work.

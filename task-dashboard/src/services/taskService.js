@@ -1,4 +1,4 @@
-const API_URL = "https://jsonplaceholder.typicode.com/todos";
+const API_URL = "http://localhost:3000/tasks";
 
 export async function getTasks(limit = 5) {
   const response = await fetch(`${API_URL}?_limit=${limit}`);
@@ -16,7 +16,12 @@ export async function createTask(taskData) {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(taskData),
+    body: JSON.stringify({
+      title: taskData.title,
+      description: taskData.description,
+      userId: 1,
+      completed: false,
+    }),
   });
 
   if (!response.ok) {

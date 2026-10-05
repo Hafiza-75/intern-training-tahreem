@@ -116,3 +116,16 @@ Focused on user authentication, JWT, role-based authorization, input validation,
 * Used a valid database user for task creation.
 * Tested the complete full-stack flow locally.
 * Pushed changes to `day-31-fullstack-flow`.
+
+
+
+### Day 32 — User Profile
+
+- Created `UpdateProfileDto` with name and email validation.
+- Added protected GET `/auth/profile` endpoint.
+- Added protected PATCH `/auth/profile` endpoint.
+- Connected profile APIs with Prisma database.
+- Created React `Profile` component.
+- Integrated JWT token with frontend API requests.
+- Added profile editing and update functionality.
+- Tested profile retrieval, profile update, and invalid email validation.

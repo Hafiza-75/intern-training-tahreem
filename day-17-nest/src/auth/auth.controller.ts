@@ -3,6 +3,7 @@ import {
   Controller,
   Get,
   Post,
+  Patch,
   Req,
   UseGuards,
 } from '@nestjs/common';
@@ -14,6 +15,7 @@ import { RolesGuard } from './roles.guard.js';
 
 import { RegisterDto } from './dto/register.dto.js';
 import { LoginDto } from './dto/login.dto.js';
+import { UpdateProfileDto } from './dto/update-profile.dto.js';
 
 @Controller('auth')
 export class AuthController {
@@ -32,11 +34,20 @@ export class AuthController {
   @UseGuards(JwtAuthGuard)
   @Get('profile')
   getProfile(@Req() request: any) {
-    return {
-      message: 'This is a protected profile',
-      user: request.user,
-    };
+    return this.authService.getProfile(request.user.userId);
   }
+
+    @UseGuards(JwtAuthGuard)
+    @Patch('profile')
+    updateProfile(
+      @Req() request: any,
+      @Body() updateProfileDto: UpdateProfileDto,
+    ) {
+      return this.authService.updateProfile(
+        request.user.userId,
+        updateProfileDto,
+      );
+    }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('ADMIN')

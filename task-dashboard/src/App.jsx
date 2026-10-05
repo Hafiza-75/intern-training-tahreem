@@ -7,6 +7,7 @@ import TaskControls from "./components/TaskControls";
 import TaskForm from "./components/TaskForm";
 import TaskFilters from "./components/TaskFilters";
 import ApiTasks from "./components/ApiTasks";
+import Profile from "./components/Profile";
 
 function App() {
   // TASK STATE
@@ -168,6 +169,7 @@ function App() {
           name="Tahreem"
           hasTasks={tasks.length > 0}
         />
+        <Profile />
 
         <TaskForm
           onAddTask={addTask}

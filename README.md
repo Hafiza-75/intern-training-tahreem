@@ -121,6 +121,8 @@ Focused on user authentication, JWT, role-based authorization, input validation,
 
 ### Day 32 — User Profile
 
+### Day 32 — User Profile
+
 - Created `UpdateProfileDto` with name and email validation.
 - Added protected GET `/auth/profile` endpoint.
 - Added protected PATCH `/auth/profile` endpoint.

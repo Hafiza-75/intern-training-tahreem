@@ -237,3 +237,13 @@ Trigger Action → Network Tab → Check Method & Status → Inspect Payload →
 - Practiced loading related tasks using `include`.
 - Created `prisma/prisma-queries.ts` for Prisma query practice.
 - Verified database operations successfully through the terminal.
+
+## Day 31 — Full-Stack Flow
+
+* Connected React Task Dashboard with NestJS backend.
+* Integrated Create Task with `POST /tasks`.
+* Connected frontend → API → NestJS → Prisma → SQLite.
+* Verified task creation successfully from the frontend.
+* Used a valid database user for task creation.
+* Tested the complete full-stack flow locally.
+* Pushed changes to `day-31-fullstack-flow`.

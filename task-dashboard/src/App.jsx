@@ -9,38 +9,16 @@ import TaskFilters from "./components/TaskFilters";
 import ApiTasks from "./components/ApiTasks";
 import Profile from "./components/Profile";
 
+import {
+  getTasks,
+  createTask,
+  updateTask,
+  deleteTask,
+} from "./services/taskService";
+
 function App() {
   // TASK STATE
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      title: "Learn React Components",
-      description: "Understand reusable React components.",
-      priority: "High",
-      completed: false,
-    },
-    {
-      id: 2,
-      title: "Practice Props and State",
-      description: "Practice passing props and managing state.",
-      priority: "Medium",
-      completed: false,
-    },
-    {
-      id: 3,
-      title: "Complete Day 9 Task",
-      description: "Implement lists, search, filters, and sorting.",
-      priority: "High",
-      completed: true,
-    },
-    {
-      id: 4,
-      title: "Build Task Dashboard",
-      description: "Create a responsive task management application.",
-      priority: "Low",
-      completed: false,
-    },
-  ]);
+  const [tasks, setTasks] = useState([]);
 
   // FORM STATE
   const [editingTask, setEditingTask] = useState(null);
@@ -51,27 +29,44 @@ function App() {
   const [sortOrder, setSortOrder] = useState("default");
   const [priorityFilter, setPriorityFilter] = useState("all");
 
-  // LOADING STATE
+  // LOADING + ERROR STATE
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
-  // Simulating data loading
+  // GET TASKS
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1000);
+    const loadTasks = async () => {
+      try {
+        setLoading(true);
+        setError("");
 
-    return () => clearTimeout(timer);
+        const data = await getTasks();
+
+        setTasks(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadTasks();
   }, []);
 
   // ADD TASK
-  const addTask = (taskData) => {
-    const newTask = {
-      id: Date.now(),
-      ...taskData,
-      completed: false,
-    };
+  const addTask = async (taskData) => {
+    try {
+      setError("");
 
-    setTasks([...tasks, newTask]);
+      const newTask = await createTask(taskData);
+
+      setTasks((currentTasks) => [
+        ...currentTasks,
+        newTask,
+      ]);
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
   // START EDITING
@@ -80,13 +75,27 @@ function App() {
   };
 
   // UPDATE TASK
-  const updateTask = (updatedTask) => {
-    const updatedTasks = tasks.map((task) =>
-      task.id === updatedTask.id ? updatedTask : task
-    );
+  const updateTaskHandler = async (updatedTask) => {
+    try {
+      setError("");
 
-    setTasks(updatedTasks);
-    setEditingTask(null);
+      const savedTask = await updateTask(
+        updatedTask.id,
+        updatedTask
+      );
+
+      setTasks((currentTasks) =>
+        currentTasks.map((task) =>
+          task.id === savedTask.id
+            ? savedTask
+            : task
+        )
+      );
+
+      setEditingTask(null);
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
   // CANCEL EDIT
@@ -95,28 +104,56 @@ function App() {
   };
 
   // TOGGLE TASK STATUS
-  const toggleTaskStatus = (taskId) => {
-    const updatedTasks = tasks.map((task) => {
-      if (task.id === taskId) {
-        return {
-          ...task,
-          completed: !task.completed,
-        };
-      }
+  const toggleTaskStatus = async (taskId) => {
+    const task = tasks.find(
+      (task) => task.id === taskId
+    );
 
-      return task;
-    });
+    if (!task) return;
 
-    setTasks(updatedTasks);
+    try {
+      setError("");
+
+      const updatedTask = await updateTask(taskId, {
+        ...task,
+        completed: !task.completed,
+      });
+
+      setTasks((currentTasks) =>
+        currentTasks.map((task) =>
+          task.id === updatedTask.id
+            ? updatedTask
+            : task
+        )
+      );
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
   // CLEAR COMPLETED TASKS
-  const clearCompletedTasks = () => {
-    const remainingTasks = tasks.filter(
-      (task) => !task.completed
+  const clearCompletedTasks = async () => {
+    const completedTasks = tasks.filter(
+      (task) => task.completed
     );
 
-    setTasks(remainingTasks);
+    try {
+      setError("");
+
+      await Promise.all(
+        completedTasks.map((task) =>
+          deleteTask(task.id)
+        )
+      );
+
+      setTasks((currentTasks) =>
+        currentTasks.filter(
+          (task) => !task.completed
+        )
+      );
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
   // FILTER + SEARCH + SORT
@@ -134,8 +171,10 @@ function App() {
       // Status filter
       const matchesStatus =
         filterStatus === "all" ||
-        (filterStatus === "completed" && task.completed) ||
-        (filterStatus === "pending" && !task.completed);
+        (filterStatus === "completed" &&
+          task.completed) ||
+        (filterStatus === "pending" &&
+          !task.completed);
 
       // Priority filter
       const matchesPriority =
@@ -169,11 +208,12 @@ function App() {
           name="Tahreem"
           hasTasks={tasks.length > 0}
         />
+
         <Profile />
 
         <TaskForm
           onAddTask={addTask}
-          onEditTask={updateTask}
+          onEditTask={updateTaskHandler}
           editingTask={editingTask}
           onCancelEdit={cancelEdit}
         />
@@ -195,6 +235,12 @@ function App() {
 
         <section>
           <h2>My Tasks</h2>
+
+          {error && (
+            <p className="error-message">
+              {error}
+            </p>
+          )}
 
           {/* Loading State */}
           {loading ? (
@@ -220,10 +266,8 @@ function App() {
             </p>
           )}
         </section>
-        
-        
-        <ApiTasks />
 
+        <ApiTasks />
       </main>
     </>
   );

@@ -64,6 +64,7 @@ export class TasksService {
         title: createTaskDto.title,
         description: createTaskDto.description,
         completed: createTaskDto.completed ?? false,
+        priority: createTaskDto.priority ?? "Medium",
         userId: createTaskDto.userId,
       },
       include: {

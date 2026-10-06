@@ -25,6 +25,7 @@ model Task {
   title       String
   description String
   completed   Boolean @default(false)
+  priority    String  @default("Medium")
   userId      Int
   user        User    @relation(fields: [userId], references: [id])
 }

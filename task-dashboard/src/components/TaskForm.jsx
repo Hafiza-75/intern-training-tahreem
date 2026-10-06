@@ -1,6 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-function TaskForm({ onAddTask, onEditTask, editingTask, onCancelEdit }) {
+function TaskForm({
+  onAddTask,
+  onEditTask,
+  editingTask,
+  onCancelEdit,
+}) {
   const [title, setTitle] = useState(
     editingTask ? editingTask.title : ""
   );
@@ -10,10 +15,27 @@ function TaskForm({ onAddTask, onEditTask, editingTask, onCancelEdit }) {
   );
 
   const [priority, setPriority] = useState(
-    editingTask ? editingTask.priority || "Medium" : "Medium"
+    editingTask
+      ? editingTask.priority || "Medium"
+      : "Medium"
   );
 
   const [errors, setErrors] = useState({});
+
+  // Load task data when Edit is clicked
+  useEffect(() => {
+    if (editingTask) {
+      setTitle(editingTask.title);
+      setDescription(editingTask.description);
+      setPriority(editingTask.priority || "Medium");
+    } else {
+      setTitle("");
+      setDescription("");
+      setPriority("Medium");
+    }
+
+    setErrors({});
+  }, [editingTask]);
 
   const validateForm = () => {
     const newErrors = {};
@@ -21,11 +43,13 @@ function TaskForm({ onAddTask, onEditTask, editingTask, onCancelEdit }) {
     if (!title.trim()) {
       newErrors.title = "Task title is required.";
     } else if (title.trim().length < 3) {
-      newErrors.title = "Task title must be at least 3 characters.";
+      newErrors.title =
+        "Task title must be at least 3 characters.";
     }
 
     if (!description.trim()) {
-      newErrors.description = "Description is required.";
+      newErrors.description =
+        "Description is required.";
     }
 
     return newErrors;
@@ -73,27 +97,37 @@ function TaskForm({ onAddTask, onEditTask, editingTask, onCancelEdit }) {
 
   return (
     <section className="task-form-section">
-      <h2>{editingTask ? "Edit Task" : "Add New Task"}</h2>
+      <h2>
+        {editingTask ? "Edit Task" : "Add New Task"}
+      </h2>
 
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="task-title">Task Title</label>
+          <label htmlFor="task-title">
+            Task Title
+          </label>
 
           <input
             id="task-title"
             type="text"
             value={title}
-            onChange={(event) => setTitle(event.target.value)}
+            onChange={(event) =>
+              setTitle(event.target.value)
+            }
             placeholder="Enter task title"
           />
 
           {errors.title && (
-            <p className="error-message">{errors.title}</p>
+            <p className="error-message">
+              {errors.title}
+            </p>
           )}
         </div>
 
         <div className="form-group">
-          <label htmlFor="task-description">Description</label>
+          <label htmlFor="task-description">
+            Description
+          </label>
 
           <textarea
             id="task-description"
@@ -112,14 +146,17 @@ function TaskForm({ onAddTask, onEditTask, editingTask, onCancelEdit }) {
           )}
         </div>
 
-        {/* Priority Selector */}
         <div className="form-group">
-          <label htmlFor="task-priority">Priority</label>
+          <label htmlFor="task-priority">
+            Priority
+          </label>
 
           <select
             id="task-priority"
             value={priority}
-            onChange={(event) => setPriority(event.target.value)}
+            onChange={(event) =>
+              setPriority(event.target.value)
+            }
           >
             <option value="High">High</option>
             <option value="Medium">Medium</option>
@@ -129,12 +166,18 @@ function TaskForm({ onAddTask, onEditTask, editingTask, onCancelEdit }) {
 
         <div className="form-buttons">
           <button type="submit">
-            {editingTask ? "Update Task" : "Add Task"}
+            {editingTask
+              ? "Update Task"
+              : "Add Task"}
           </button>
 
           <button
             type="button"
-            onClick={editingTask ? handleCancel : handleReset}
+            onClick={
+              editingTask
+                ? handleCancel
+                : handleReset
+            }
           >
             {editingTask ? "Cancel" : "Reset"}
           </button>

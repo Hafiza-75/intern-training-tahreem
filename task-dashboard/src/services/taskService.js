@@ -1,7 +1,7 @@
 const API_URL = "http://localhost:3000/tasks";
 
-export async function getTasks(limit = 5) {
-  const response = await fetch(`${API_URL}?_limit=${limit}`);
+export async function getTasks() {
+  const response = await fetch(API_URL);
 
   if (!response.ok) {
     throw new Error(`Failed to fetch tasks. Status: ${response.status}`);
@@ -19,6 +19,7 @@ export async function createTask(taskData) {
     body: JSON.stringify({
       title: taskData.title,
       description: taskData.description,
+      priority: taskData.priority,
       userId: 1,
       completed: false,
     }),
@@ -32,17 +33,17 @@ export async function createTask(taskData) {
 }
 
 export async function updateTask(id, taskData) {
-  // Local/Newly created tasks (ID > 200) mock update
-  if (id > 200) {
-    return { id, ...taskData };
-  }
-
   const response = await fetch(`${API_URL}/${id}`, {
-    method: "PUT",
+    method: "PATCH",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(taskData),
+    body: JSON.stringify({
+      title: taskData.title,
+      description: taskData.description,
+      priority: taskData.priority,
+      completed: taskData.completed,
+    }),
   });
 
   if (!response.ok) {
@@ -53,11 +54,6 @@ export async function updateTask(id, taskData) {
 }
 
 export async function deleteTask(id) {
-  // Local/Newly created tasks (ID > 200) mock delete
-  if (id > 200) {
-    return true;
-  }
-
   const response = await fetch(`${API_URL}/${id}`, {
     method: "DELETE",
   });

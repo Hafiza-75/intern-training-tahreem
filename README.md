@@ -145,5 +145,16 @@ Focused on user authentication, JWT, role-based authorization, input validation,
 - Tested task creation, reading, updating, deletion, filtering, sorting, and refresh persistence.
 
 
+## Day 34 — Full-Stack Feature Development
+
+- Handled frontend form validation for empty and invalid task inputs.
+- Handled empty search results and task list states.
+- Tested API errors for missing tasks and invalid requests.
+- Implemented proper 404 handling for invalid task IDs.
+- Tested invalid user ID handling during task creation.
+- Verified 400 validation responses for missing required fields.
+- Added proper async handling for task deletion errors.
+- Secured task API responses by excluding user password hashes.
+- Tested task creation, search, validation, error handling, and missing-resource scenarios.
 
 

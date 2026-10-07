@@ -17,7 +17,14 @@ export class TasksService {
   async findAll() {
     const tasks = await this.prisma.task.findMany({
       include: {
-        user: true,
+        user: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+            role: true,
+          },
+        },
       },
     });
 
@@ -32,7 +39,14 @@ export class TasksService {
         id,
       },
       include: {
-        user: true,
+        user: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+            role: true,
+          },
+        },
       },
     });
 
@@ -68,7 +82,14 @@ export class TasksService {
         userId: createTaskDto.userId,
       },
       include: {
-        user: true,
+        user: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+            role: true,
+          },
+        },
       },
     });
 
@@ -86,7 +107,14 @@ export class TasksService {
       },
       data: updateTaskDto,
       include: {
-        user: true,
+        user: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+            role: true,
+          },
+        },
       },
     });
 

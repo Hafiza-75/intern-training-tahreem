@@ -51,7 +51,7 @@ export class TasksController {
   // DELETE (Returns 204 No Content)
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
-  remove(@Param('id', ParseIntPipe) id: number) {
-    this.tasksService.remove(id);
+  async remove(@Param('id', ParseIntPipe) id: number) {
+    await this.tasksService.remove(id);
   }
 }

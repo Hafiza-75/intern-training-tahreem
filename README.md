@@ -103,58 +103,59 @@ Focused on user authentication, JWT, role-based authorization, input validation,
 **Technologies:** `NestJS` `JWT` `Passport` `bcrypt` `Prisma` `TypeScript` `ValidationPipe`
 
 ---
+## Week 7 — Full-Stack Feature Development
 
-## WEEK 7 — Full-Stack Feature Development
+### Day 32 — Profile Feature
+- Worked with the existing profile component and frontend structure.
+- Practiced understanding and updating profile-related functionality.
+- Focused on component integration within the React application.
 
+### Day 33 — Task Management
+- Worked on task creation, retrieval, updating, and deletion.
+- Integrated React frontend functionality with backend API endpoints.
+- Practiced handling task data and API responses.
 
-## Day 31 — Full-Stack Flow
+### Day 34 — Edge Cases and Error Handling
+- Practiced identifying edge cases in task management.
+- Reviewed empty inputs, invalid data, and API errors.
+- Improved validation and error-handling practices.
 
-* Connected React Task Dashboard with NestJS backend.
-* Integrated Create Task with `POST /tasks`.
-* Connected frontend → API → NestJS → Prisma → SQLite.
-* Verified task creation successfully from the frontend.
-* Used a valid database user for task creation.
-* Tested the complete full-stack flow locally.
-* Pushed changes to `day-31-fullstack-flow`.
+### Day 35 — Feature Review
+- Reviewed the full-stack task management workflow.
+- Checked frontend-to-backend integration.
+- Practiced reviewing existing functionality and identifying potential improvements.
 
+## Week 8 — Working with an Existing Codebase
 
+### Day 36 — Codebase Understanding
+- Reviewed the existing React frontend and NestJS backend structure.
+- Identified components, services, controllers, and database-related files.
+- Traced how frontend actions connect to backend functionality.
 
+### Day 37 — Code Navigation
+- Practiced searching for components, functions, and API endpoints.
+- Used code search to locate relevant implementations.
+- Traced data flow between frontend components, API services, backend controllers, and services.
 
-### Day 32 — User Profile
+### Day 38 — Bug Fix
+- Investigated a task-count synchronization issue.
+- Identified separate task states in `App.jsx` and `ApiTasks.jsx`.
+- Passed a callback from the parent component to update the task count after deletion.
+- Verified that the task count updates without refreshing the page.
 
-- Created `UpdateProfileDto` with name and email validation.
-- Added protected GET `/auth/profile` endpoint.
-- Added protected PATCH `/auth/profile` endpoint.
-- Connected profile APIs with Prisma database.
-- Created React `Profile` component.
-- Integrated JWT token with frontend API requests.
-- Added profile editing and update functionality.
-- Tested profile retrieval, profile update, and invalid email validation.
+### Day 39 — Feature Change
+- Added a **Clear Filters** button to the task filtering component.
+- Reset search, status, priority, and sorting filters to their default values.
+- Connected `TaskFilters.jsx` with filter state managed in `App.jsx`.
+- Preserved the existing search, filtering, and sorting functionality.
 
-
-### Day 33 — Full-Stack Feature Development
-
-- Implemented complete Task CRUD functionality.
-- Connected React Task Management UI with NestJS APIs.
-- Integrated task data with Prisma and SQLite database.
-- Added task completion/pending status management.
-- Added task search by title and description.
-- Added status and priority filtering.
-- Added A-Z and Z-A task sorting.
-- Added High, Medium, and Low task priorities with database persistence.
-- Tested task creation, reading, updating, deletion, filtering, sorting, and refresh persistence.
-
-
-## Day 34 — Full-Stack Feature Development
-
-- Handled frontend form validation for empty and invalid task inputs.
-- Handled empty search results and task list states.
-- Tested API errors for missing tasks and invalid requests.
-- Implemented proper 404 handling for invalid task IDs.
-- Tested invalid user ID handling during task creation.
-- Verified 400 validation responses for missing required fields.
-- Added proper async handling for task deletion errors.
-- Secured task API responses by excluding user password hashes.
-- Tested task creation, search, validation, error handling, and missing-resource scenarios.
-
-
+### Technologies Used
+- React.js
+- JavaScript
+- JSX
+- NestJS
+- REST APIs
+- Prisma ORM
+- SQLite
+- Git and GitHub
+- Visual Studio Code

@@ -6,7 +6,7 @@ import {
   deleteTask,
 } from "../services/taskService";
 
-function ApiTasks() {
+function ApiTasks( { onTaskDeleted } ) {
   const [tasks, setTasks] = useState([]);
 
   const [loading, setLoading] = useState(true);
@@ -170,6 +170,7 @@ function ApiTasks() {
       setTasks((currentTasks) =>
         currentTasks.filter((task) => task.id !== taskId)
       );
+      onTaskDeleted?.(taskId);
 
       setSuccess("Task deleted successfully.");
     } catch (err) {

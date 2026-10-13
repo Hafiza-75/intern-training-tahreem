@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 
 import Header from "./components/Header";
@@ -41,7 +42,6 @@ function App() {
         setError("");
 
         const data = await getTasks();
-
         setTasks(data);
       } catch (err) {
         setError(err.message);
@@ -86,9 +86,7 @@ function App() {
 
       setTasks((currentTasks) =>
         currentTasks.map((task) =>
-          task.id === savedTask.id
-            ? savedTask
-            : task
+          task.id === savedTask.id ? savedTask : task
         )
       );
 
@@ -105,9 +103,7 @@ function App() {
 
   // TOGGLE TASK STATUS
   const toggleTaskStatus = async (taskId) => {
-    const task = tasks.find(
-      (task) => task.id === taskId
-    );
+    const task = tasks.find((task) => task.id === taskId);
 
     if (!task) return;
 
@@ -121,9 +117,7 @@ function App() {
 
       setTasks((currentTasks) =>
         currentTasks.map((task) =>
-          task.id === updatedTask.id
-            ? updatedTask
-            : task
+          task.id === updatedTask.id ? updatedTask : task
         )
       );
     } catch (err) {
@@ -141,42 +135,41 @@ function App() {
       setError("");
 
       await Promise.all(
-        completedTasks.map((task) =>
-          deleteTask(task.id)
-        )
+        completedTasks.map((task) => deleteTask(task.id))
       );
 
       setTasks((currentTasks) =>
-        currentTasks.filter(
-          (task) => !task.completed
-        )
+        currentTasks.filter((task) => !task.completed)
       );
     } catch (err) {
       setError(err.message);
     }
   };
 
+  // CLEAR ALL FILTERS
+  const clearFilters = () => {
+    setSearchTerm("");
+    setFilterStatus("all");
+    setSortOrder("default");
+    setPriorityFilter("all");
+  };
+
   // FILTER + SEARCH + SORT
   const displayedTasks = tasks
     .filter((task) => {
-      // Search
       const matchesSearch =
         task.title
           .toLowerCase()
           .includes(searchTerm.toLowerCase()) ||
-        task.description
+        (task.description || "")
           .toLowerCase()
           .includes(searchTerm.toLowerCase());
 
-      // Status filter
       const matchesStatus =
         filterStatus === "all" ||
-        (filterStatus === "completed" &&
-          task.completed) ||
-        (filterStatus === "pending" &&
-          !task.completed);
+        (filterStatus === "completed" && task.completed) ||
+        (filterStatus === "pending" && !task.completed);
 
-      // Priority filter
       const matchesPriority =
         priorityFilter === "all" ||
         task.priority === priorityFilter;
@@ -231,24 +224,21 @@ function App() {
           onSortChange={setSortOrder}
           priorityFilter={priorityFilter}
           onPriorityChange={setPriorityFilter}
+          onClearFilters={clearFilters}
         />
 
         <section>
           <h2>My Tasks</h2>
 
           {error && (
-            <p className="error-message">
-              {error}
-            </p>
+            <p className="error-message">{error}</p>
           )}
 
-          {/* Loading State */}
           {loading ? (
             <p className="loading-message">
               Loading tasks...
             </p>
           ) : displayedTasks.length > 0 ? (
-            /* Dynamic List */
             <div className="task-list">
               {displayedTasks.map((task) => (
                 <TaskCard
@@ -260,7 +250,6 @@ function App() {
               ))}
             </div>
           ) : (
-            /* Empty State */
             <p className="empty-message">
               No tasks found.
             </p>
@@ -268,16 +257,14 @@ function App() {
         </section>
 
         <ApiTasks
-        onTaskDeleted={(taskId) => {
-          setTasks((currentTasks) =>
-            currentTasks.filter((task) => task.id !== taskId)
-        );
-        }}
+          onTaskDeleted={(taskId) => {
+            setTasks((currentTasks) =>
+              currentTasks.filter(
+                (task) => task.id !== taskId
+              )
+            );
+          }}
         />
-
-
-
-
       </main>
     </>
   );

@@ -267,7 +267,17 @@ function App() {
           )}
         </section>
 
-        <ApiTasks />
+        <ApiTasks
+        onTaskDeleted={(taskId) => {
+          setTasks((currentTasks) =>
+            currentTasks.filter((task) => task.id !== taskId)
+        );
+        }}
+        />
+
+
+
+
       </main>
     </>
   );

@@ -7,8 +7,9 @@ import TaskCard from "./components/TaskCard";
 import TaskControls from "./components/TaskControls";
 import TaskForm from "./components/TaskForm";
 import TaskFilters from "./components/TaskFilters";
-import ApiTasks from "./components/ApiTasks";
 import Profile from "./components/Profile";
+import Login from "./components/Login";
+import Register from "./components/Register";
 
 import {
   getTasks,
@@ -18,6 +19,16 @@ import {
 } from "./services/taskService";
 
 function App() {
+  // AUTHENTICATION STATE
+  const [token, setToken] = useState(
+    () => localStorage.getItem("access_token")
+  );
+  const [authUser, setAuthUser] = useState(null);
+  const [authPage, setAuthPage] = useState("login");
+  const [checkingSession, setCheckingSession] = useState(
+    () => Boolean(localStorage.getItem("access_token"))
+  );
+
   // TASK STATE
   const [tasks, setTasks] = useState([]);
 
@@ -31,27 +42,118 @@ function App() {
   const [priorityFilter, setPriorityFilter] = useState("all");
 
   // LOADING + ERROR STATE
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // GET TASKS
+  // VERIFY EXISTING LOGIN SESSION
   useEffect(() => {
+    if (!token) {
+      setAuthUser(null);
+      setCheckingSession(false);
+      return;
+    }
+
+    let cancelled = false;
+
+    const verifySession = async () => {
+      setCheckingSession(true);
+
+      try {
+        const response = await fetch(
+          "http://localhost:3000/auth/profile",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(
+            data.message || "Session expired. Please log in again."
+          );
+        }
+
+        if (!cancelled) {
+          setAuthUser(data);
+        }
+      } catch {
+        if (!cancelled) {
+          localStorage.removeItem("access_token");
+          setToken(null);
+          setAuthUser(null);
+          setAuthPage("login");
+        }
+      } finally {
+        if (!cancelled) {
+          setCheckingSession(false);
+        }
+      }
+    };
+
+    verifySession();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [token]);
+
+  // HANDLE SUCCESSFUL LOGIN
+  const handleLoginSuccess = () => {
+    const savedToken = localStorage.getItem("access_token");
+
+    setToken(savedToken);
+    setError("");
+  };
+
+  // LOGOUT
+  const handleLogout = () => {
+    localStorage.removeItem("access_token");
+
+    setToken(null);
+    setAuthUser(null);
+    setTasks([]);
+    setEditingTask(null);
+    setAuthPage("login");
+    setError("");
+    setLoading(false);
+  };
+
+  // LOAD TASKS AFTER LOGIN
+  useEffect(() => {
+    if (!token || !authUser) return;
+
+    let cancelled = false;
+
     const loadTasks = async () => {
       try {
         setLoading(true);
         setError("");
 
         const data = await getTasks();
-        setTasks(data);
+
+        if (!cancelled) {
+          setTasks(data);
+        }
       } catch (err) {
-        setError(err.message);
+        if (!cancelled) {
+          setError(err.message);
+        }
       } finally {
-        setLoading(false);
+        if (!cancelled) {
+          setLoading(false);
+        }
       }
     };
 
     loadTasks();
-  }, []);
+
+    return () => {
+      cancelled = true;
+    };
+  }, [token, authUser]);
 
   // ADD TASK
   const addTask = async (taskData) => {
@@ -157,13 +259,13 @@ function App() {
   // FILTER + SEARCH + SORT
   const displayedTasks = tasks
     .filter((task) => {
+      const title = (task.title || "").toLowerCase();
+      const description = (task.description || "").toLowerCase();
+      const query = searchTerm.toLowerCase();
+
       const matchesSearch =
-        task.title
-          .toLowerCase()
-          .includes(searchTerm.toLowerCase()) ||
-        (task.description || "")
-          .toLowerCase()
-          .includes(searchTerm.toLowerCase());
+        title.includes(query) ||
+        description.includes(query);
 
       const matchesStatus =
         filterStatus === "all" ||
@@ -192,17 +294,48 @@ function App() {
       return 0;
     });
 
+  // SHOW LOGIN OR REGISTER
+  if (!token) {
+    return (
+      <main>
+        {authPage === "login" ? (
+          <Login
+            onLoginSuccess={handleLoginSuccess}
+            onSwitchToRegister={() =>
+              setAuthPage("register")
+            }
+          />
+        ) : (
+          <Register
+            onSwitchToLogin={() =>
+              setAuthPage("login")
+            }
+          />
+        )}
+      </main>
+    );
+  }
+
+  // WAIT FOR SESSION VERIFICATION
+  if (checkingSession || !authUser) {
+    return <p>Verifying login session...</p>;
+  }
+
+  // AUTHENTICATED DASHBOARD
   return (
     <>
       <Header totalTasks={tasks.length} />
 
       <main>
         <Welcome
-          name="Tahreem"
+          name={authUser.name || "User"}
           hasTasks={tasks.length > 0}
         />
 
-        <Profile />
+        <Profile
+          token={token}
+          onLogout={handleLogout}
+        />
 
         <TaskForm
           onAddTask={addTask}
@@ -255,16 +388,6 @@ function App() {
             </p>
           )}
         </section>
-
-        <ApiTasks
-          onTaskDeleted={(taskId) => {
-            setTasks((currentTasks) =>
-              currentTasks.filter(
-                (task) => task.id !== taskId
-              )
-            );
-          }}
-        />
       </main>
     </>
   );

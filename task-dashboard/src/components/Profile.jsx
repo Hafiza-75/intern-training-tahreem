@@ -1,6 +1,7 @@
+
 import { useEffect, useState } from "react";
 
-function Profile() {
+function Profile({ token, onLogout }) {
   const [profile, setProfile] = useState(null);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -10,12 +11,19 @@ function Profile() {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
-  const token = localStorage.getItem("access_token");
-
   // GET PROFILE
   useEffect(() => {
     const fetchProfile = async () => {
+      if (!token) {
+        setError("Please log in to view your profile.");
+        setLoading(false);
+        return;
+      }
+
       try {
+        setLoading(true);
+        setError("");
+
         const response = await fetch(
           "http://localhost:3000/auth/profile",
           {
@@ -26,7 +34,11 @@ function Profile() {
         );
 
         if (!response.ok) {
-          throw new Error("Failed to fetch profile");
+          throw new Error(
+            response.status === 401
+              ? "Your session has expired. Please log in again."
+              : "Failed to fetch profile."
+          );
         }
 
         const data = await response.json();
@@ -60,15 +72,18 @@ function Profile() {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify({
-            name,
-            email,
-          }),
+          body: JSON.stringify({ name, email }),
         }
       );
 
       if (!response.ok) {
-        throw new Error("Failed to update profile");
+        const data = await response.json().catch(() => ({}));
+
+        throw new Error(
+          Array.isArray(data.message)
+            ? data.message.join(", ")
+            : data.message || "Failed to update profile."
+        );
       }
 
       const updatedProfile = await response.json();
@@ -76,7 +91,6 @@ function Profile() {
       setProfile(updatedProfile);
       setName(updatedProfile.name);
       setEmail(updatedProfile.email);
-
       setEditing(false);
       setMessage("Profile updated successfully!");
     } catch (err) {
@@ -89,15 +103,27 @@ function Profile() {
   }
 
   if (error && !profile) {
-    return <p>{error}</p>;
+    return (
+      <section className="profile-section">
+        <h2>My Profile</h2>
+        <p className="error-message">{error}</p>
+        <button type="button" onClick={onLogout}>
+          Log Out
+        </button>
+      </section>
+    );
+  }
+
+  if (!profile) {
+    return <p>Profile information is unavailable.</p>;
   }
 
   return (
     <section className="profile-section">
       <h2>My Profile</h2>
 
-      {message && <p>{message}</p>}
-      {error && <p>{error}</p>}
+      {message && <p className="success-message">{message}</p>}
+      {error && <p className="error-message">{error}</p>}
 
       {!editing ? (
         <div>
@@ -113,15 +139,23 @@ function Profile() {
             <strong>Role:</strong> {profile.role}
           </p>
 
-          <button onClick={() => setEditing(true)}>
+          <button
+            type="button"
+            onClick={() => {
+              setEditing(true);
+              setMessage("");
+              setError("");
+            }}
+          >
             Edit Profile
           </button>
         </div>
       ) : (
         <form onSubmit={handleUpdate}>
           <div>
-            <label>Name</label>
+            <label htmlFor="profile-name">Name</label>
             <input
+              id="profile-name"
               type="text"
               value={name}
               onChange={(event) => setName(event.target.value)}
@@ -131,8 +165,9 @@ function Profile() {
           </div>
 
           <div>
-            <label>Email</label>
+            <label htmlFor="profile-email">Email</label>
             <input
+              id="profile-email"
               type="email"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
@@ -140,9 +175,7 @@ function Profile() {
             />
           </div>
 
-          <button type="submit">
-            Save Changes
-          </button>
+          <button type="submit">Save Changes</button>
 
           <button
             type="button"
@@ -151,12 +184,17 @@ function Profile() {
               setName(profile.name);
               setEmail(profile.email);
               setError("");
+              setMessage("");
             }}
           >
             Cancel
           </button>
         </form>
       )}
+
+      <button type="button" onClick={onLogout}>
+        Log Out
+      </button>
     </section>
   );
 }

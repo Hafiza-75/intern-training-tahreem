@@ -1,3 +1,4 @@
+
 import {
   Injectable,
   Logger,
@@ -14,8 +15,9 @@ export class TasksService {
 
   constructor(private readonly prisma: PrismaService) {}
 
-  async findAll() {
+  async findAll(userId: number) {
     const tasks = await this.prisma.task.findMany({
+      where: { userId },
       include: {
         user: {
           select: {
@@ -28,16 +30,13 @@ export class TasksService {
       },
     });
 
-    this.logger.log(`Fetched ${tasks.length} tasks from database`);
-
+    this.logger.log(`Fetched ${tasks.length} tasks for user ${userId}`);
     return tasks;
   }
 
-  async findOne(id: number) {
-    const task = await this.prisma.task.findUnique({
-      where: {
-        id,
-      },
+  async findOne(id: number, userId: number) {
+    const task = await this.prisma.task.findFirst({
+      where: { id, userId },
       include: {
         user: {
           select: {
@@ -51,35 +50,22 @@ export class TasksService {
     });
 
     if (!task) {
-      this.logger.warn(`Task with ID ${id} not found`);
-      throw new NotFoundException(`Task with ID ${id} not found`);
+      throw new NotFoundException(
+        `Task with ID ${id} not found`,
+      );
     }
-
-    this.logger.log(`Task with ID ${id} fetched successfully`);
 
     return task;
   }
 
-  async create(createTaskDto: CreateTaskDto) {
-    const user = await this.prisma.user.findUnique({
-      where: {
-        id: createTaskDto.userId,
-      },
-    });
-
-    if (!user) {
-      throw new NotFoundException(
-        `User with ID ${createTaskDto.userId} not found`,
-      );
-    }
-
+  async create(createTaskDto: CreateTaskDto, userId: number) {
     const task = await this.prisma.task.create({
       data: {
         title: createTaskDto.title,
         description: createTaskDto.description,
         completed: createTaskDto.completed ?? false,
-        priority: createTaskDto.priority ?? "Medium",
-        userId: createTaskDto.userId,
+        priority: createTaskDto.priority ?? 'Medium',
+        userId,
       },
       include: {
         user: {
@@ -93,18 +79,19 @@ export class TasksService {
       },
     });
 
-    this.logger.log(`Task created successfully with ID ${task.id}`);
-
+    this.logger.log(`Task ${task.id} created for user ${userId}`);
     return task;
   }
 
-  async update(id: number, updateTaskDto: UpdateTaskDto) {
-    await this.findOne(id);
+  async update(
+    id: number,
+    updateTaskDto: UpdateTaskDto,
+    userId: number,
+  ) {
+    await this.findOne(id, userId);
 
     const task = await this.prisma.task.update({
-      where: {
-        id,
-      },
+      where: { id },
       data: updateTaskDto,
       include: {
         user: {
@@ -118,20 +105,17 @@ export class TasksService {
       },
     });
 
-    this.logger.log(`Task with ID ${id} updated successfully`);
-
+    this.logger.log(`Task ${id} updated by user ${userId}`);
     return task;
   }
 
-  async remove(id: number) {
-    await this.findOne(id);
+  async remove(id: number, userId: number) {
+    await this.findOne(id, userId);
 
     await this.prisma.task.delete({
-      where: {
-        id,
-      },
+      where: { id },
     });
 
-    this.logger.log(`Task with ID ${id} deleted successfully`);
+    this.logger.log(`Task ${id} deleted by user ${userId}`);
   }
 }

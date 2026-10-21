@@ -1,43 +1,68 @@
+
 const API_URL = "http://localhost:3000/tasks";
 
-export async function getTasks() {
-  const response = await fetch(API_URL);
+function getAuthHeaders(includeJson = false) {
+  const token = localStorage.getItem("access_token");
 
-  if (!response.ok) {
-    throw new Error(`Failed to fetch tasks. Status: ${response.status}`);
+  if (!token) {
+    throw new Error("Please login to manage tasks.");
   }
 
-  return await response.json();
+  return {
+    Authorization: `Bearer ${token}`,
+    ...(includeJson ? { "Content-Type": "application/json" } : {}),
+  };
+}
+
+async function handleResponse(response, action) {
+  if (!response.ok) {
+    const data = await response.json().catch(() => null);
+
+    throw new Error(
+      data?.message
+        ? `${action} failed: ${
+            Array.isArray(data.message)
+              ? data.message.join(", ")
+              : data.message
+          }`
+        : `${action} failed. Status: ${response.status}`
+    );
+  }
+
+  if (response.status === 204) {
+    return true;
+  }
+
+  return response.json();
+}
+
+export async function getTasks() {
+  const response = await fetch(API_URL, {
+    headers: getAuthHeaders(),
+  });
+
+  return handleResponse(response, "Fetching tasks");
 }
 
 export async function createTask(taskData) {
   const response = await fetch(API_URL, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: getAuthHeaders(true),
     body: JSON.stringify({
       title: taskData.title,
       description: taskData.description,
       priority: taskData.priority,
-      userId: 1,
-      completed: false,
+      completed: taskData.completed ?? false,
     }),
   });
 
-  if (!response.ok) {
-    throw new Error(`Failed to create task. Status: ${response.status}`);
-  }
-
-  return await response.json();
+  return handleResponse(response, "Creating task");
 }
 
 export async function updateTask(id, taskData) {
   const response = await fetch(`${API_URL}/${id}`, {
     method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: getAuthHeaders(true),
     body: JSON.stringify({
       title: taskData.title,
       description: taskData.description,
@@ -46,21 +71,14 @@ export async function updateTask(id, taskData) {
     }),
   });
 
-  if (!response.ok) {
-    throw new Error(`Failed to update task. Status: ${response.status}`);
-  }
-
-  return await response.json();
+  return handleResponse(response, "Updating task");
 }
 
 export async function deleteTask(id) {
   const response = await fetch(`${API_URL}/${id}`, {
     method: "DELETE",
+    headers: getAuthHeaders(),
   });
 
-  if (!response.ok) {
-    throw new Error(`Failed to delete task. Status: ${response.status}`);
-  }
-
-  return true;
+  return handleResponse(response, "Deleting task");
 }

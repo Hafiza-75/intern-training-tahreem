@@ -1,8 +1,8 @@
+
 import {
   IsString,
   IsBoolean,
   IsOptional,
-  IsInt,
 } from 'class-validator';
 
 export class CreateTaskDto {
@@ -19,7 +19,4 @@ export class CreateTaskDto {
   @IsBoolean()
   @IsOptional()
   completed?: boolean;
-
-  @IsInt()
-  userId: number;
 }

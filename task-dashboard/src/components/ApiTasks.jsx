@@ -25,7 +25,7 @@ function ApiTasks( { onTaskDeleted } ) {
       setLoading(true);
       setError("");
 
-      const data = await getTasks(5);
+      const data = await getTasks();
       setTasks(data);
     } catch (err) {
       setError(err.message || "Failed to load tasks.");
@@ -42,7 +42,7 @@ function ApiTasks( { onTaskDeleted } ) {
         setLoading(true);
         setError("");
 
-        const data = await getTasks(5);
+        const data = await getTasks();
         if (!ignore) {
           setTasks(data);
         }
@@ -81,7 +81,6 @@ function ApiTasks( { onTaskDeleted } ) {
       const newTask = {
         title: title.trim(),
         completed: false,
-        userId: 1,
       };
 
       const createdTask = await createTask(newTask);

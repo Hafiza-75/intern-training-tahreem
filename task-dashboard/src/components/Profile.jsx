@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 
 function Profile({ token, onLogout }) {
@@ -99,15 +98,15 @@ function Profile({ token, onLogout }) {
   };
 
   if (loading) {
-    return <p>Loading profile...</p>;
+    return <p className="loading-message">Loading profile...</p>;
   }
 
   if (error && !profile) {
     return (
-      <section className="profile-section">
+      <section className="profile-card">
         <h2>My Profile</h2>
         <p className="error-message">{error}</p>
-        <button type="button" onClick={onLogout}>
+        <button type="button" className="btn-logout" onClick={onLogout}>
           Log Out
         </button>
       </section>
@@ -115,44 +114,58 @@ function Profile({ token, onLogout }) {
   }
 
   if (!profile) {
-    return <p>Profile information is unavailable.</p>;
+    return <p className="empty-message">Profile information is unavailable.</p>;
   }
 
   return (
-    <section className="profile-section">
-      <h2>My Profile</h2>
+    <section className="profile-card">
+      <div className="profile-header">
+        <h2>My Profile</h2>
+      </div>
 
       {message && <p className="success-message">{message}</p>}
       {error && <p className="error-message">{error}</p>}
 
       {!editing ? (
-        <div>
-          <p>
-            <strong>Name:</strong> {profile.name}
-          </p>
+        <div className="profile-details">
+          <div className="profile-info-grid">
+            <div className="info-item">
+              <span className="info-label">Name</span>
+              <span className="info-value">{profile.name}</span>
+            </div>
 
-          <p>
-            <strong>Email:</strong> {profile.email}
-          </p>
+            <div className="info-item">
+              <span className="info-label">Email</span>
+              <span className="info-value">{profile.email}</span>
+            </div>
 
-          <p>
-            <strong>Role:</strong> {profile.role}
-          </p>
+            <div className="info-item">
+              <span className="info-label">Role</span>
+              <span className="info-value badge-role">{profile.role}</span>
+            </div>
+          </div>
 
-          <button
-            type="button"
-            onClick={() => {
-              setEditing(true);
-              setMessage("");
-              setError("");
-            }}
-          >
-            Edit Profile
-          </button>
+          <div className="profile-actions">
+            <button
+              type="button"
+              className="btn-edit"
+              onClick={() => {
+                setEditing(true);
+                setMessage("");
+                setError("");
+              }}
+            >
+              Edit Profile
+            </button>
+
+            <button type="button" className="btn-logout" onClick={onLogout}>
+              Log Out
+            </button>
+          </div>
         </div>
       ) : (
-        <form onSubmit={handleUpdate}>
-          <div>
+        <form onSubmit={handleUpdate} className="profile-edit-form">
+          <div className="form-group">
             <label htmlFor="profile-name">Name</label>
             <input
               id="profile-name"
@@ -164,7 +177,7 @@ function Profile({ token, onLogout }) {
             />
           </div>
 
-          <div>
+          <div className="form-group">
             <label htmlFor="profile-email">Email</label>
             <input
               id="profile-email"
@@ -175,26 +188,27 @@ function Profile({ token, onLogout }) {
             />
           </div>
 
-          <button type="submit">Save Changes</button>
+          <div className="profile-actions">
+            <button type="submit" className="btn-save">
+              Save Changes
+            </button>
 
-          <button
-            type="button"
-            onClick={() => {
-              setEditing(false);
-              setName(profile.name);
-              setEmail(profile.email);
-              setError("");
-              setMessage("");
-            }}
-          >
-            Cancel
-          </button>
+            <button
+              type="button"
+              className="btn-cancel"
+              onClick={() => {
+                setEditing(false);
+                setName(profile.name);
+                setEmail(profile.email);
+                setError("");
+                setMessage("");
+              }}
+            >
+              Cancel
+            </button>
+          </div>
         </form>
       )}
-
-      <button type="button" onClick={onLogout}>
-        Log Out
-      </button>
     </section>
   );
 }

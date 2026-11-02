@@ -31,6 +31,8 @@ function App() {
 
   // TASK STATE
   const [tasks, setTasks] = useState([]);
+  console.table(tasks.map(({ id, title }) => ({ id, title })));
+  console.log("All tasks:", tasks);
 
   // FORM STATE
   const [editingTask, setEditingTask] = useState(null);
@@ -174,6 +176,14 @@ function App() {
   // START EDITING
   const editTask = (task) => {
     setEditingTask(task);
+    setTimeout(() => {
+      document
+      .querySelector(".task-form-section")
+      ?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }, 100);
   };
 
   // UPDATE TASK
